@@ -65,6 +65,7 @@
     "@graphql-codegen/cli": "^1.17.0",
     "@graphql-codegen/core": "^1.17.0",
     "@graphql-codegen/typescript": "^1.17.0",
+    "@svgr/webpack": "^5.4.0",
     "@testing-library/jest-native": "^3.1.0",
     "@testing-library/react-native": "^5.0.3",
     "@types/expo": "^33.0.1",

@@ -1255,6 +1255,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@dooboo-ui/theme@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@dooboo-ui/theme/-/theme-0.0.1.tgz#2c1938d0b0d1deb7fbb6678c66f1ec08f18f20e4"
+  integrity sha512-ZjXITc3wqKYJDbejDjKsmF2byViAwn9JbyaHEPs+LNapNx3c/FEZfdStuLlooU0JrO/C1qcrNAg0vU/1WnVpdg==
+  dependencies:
+    dooboolab-welcome "^1.2.0"
+
 "@dooboo/eslint-config@^0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@dooboo/eslint-config/-/eslint-config-0.4.3.tgz#5606b0015dc39dfb9b1b26749ea96f4c23aa2fac"
@@ -4443,6 +4450,18 @@ domutils@^1.7.0:
   dependencies:
     dom-serializer "0"
     domelementtype "1"
+
+dooboo-ui@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/dooboo-ui/-/dooboo-ui-0.0.2.tgz#ee7f3e7d9182f9f0e817bf95526a85bfaf82a654"
+  integrity sha512-TPQw3NZXmaXxmC9iybinFDjcxYlahSaCinIzsz/5/497QDE4ts3iz1VCFBOZVR3MesuSPtrx1qC93AkF0jxh1Q==
+  dependencies:
+    dooboolab-welcome "^1.2.0"
+
+dooboolab-welcome@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/dooboolab-welcome/-/dooboolab-welcome-1.2.0.tgz#295818ce85a8e97dc90c0ec0510b4008e2d722dc"
+  integrity sha512-XgEbjJHAsKLge/e8jtuHsv84Ovg1Gx0GvnOTOmOlVGV1643nduTAkT3fyo/mxKbzvyXBr47RHaJAY4R2toI0UA==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"

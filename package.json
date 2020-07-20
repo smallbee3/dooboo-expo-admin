@@ -19,10 +19,12 @@
   "author": "hyochan <dooboolab@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@dooboo-ui/theme": "^0.0.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/core": "^5.12.1",
     "@react-navigation/native": "^5.7.1",
     "@react-navigation/stack": "^5.7.1",
+    "dooboo-ui": "^0.0.2",
     "expo": "^38.0.8",
     "expo-localization": "~8.2.1",
     "expo-splash-screen": "^0.4.0",

@@ -1,16 +1,21 @@
-import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
-import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
+import { AuthLinking, MainLinking } from './LinkingConfiguration';
+import {
+  StackNavigationProp,
+  createStackNavigator,
+} from '@react-navigation/stack';
 
-import Intro from '../screen/Intro';
+import AuthNavigator from './AuthNavigator';
+import MainNavigator from './MainNavigator';
 import { NavigationContainer } from '@react-navigation/native';
+import NotFoundScreen from '../screen/NotFound';
 import React from 'react';
-import Temp from '../screen/Temp';
+import { useAppContext } from '../../providers/AppProvider';
 
 export type RootStackParamList = {
   default: undefined;
-  Intro: undefined;
-  Temp: { param: string };
-}
+  Root: undefined;
+  NotFound: undefined;
+};
 
 export type RootStackNavigationProps<
   T extends keyof RootStackParamList = 'default'
@@ -19,24 +24,22 @@ export type RootStackNavigationProps<
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator(): React.ReactElement {
-  const { theme, themeType } = useThemeContext();
+  const {
+    state: { user },
+  } = useAppContext();
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Intro"
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: theme.background,
-          },
-          headerTitleStyle: { color: theme.fontColor },
-          headerTintColor: theme.tintColor,
-        }}
-        headerMode={
-          themeType === ThemeType.DARK ? 'screen' : 'float'
-        }
-      >
-        <Stack.Screen name="Intro" component={Intro} />
-        <Stack.Screen name="Temp" component={Temp} />
+    <NavigationContainer linking={user?.verified ? MainLinking : AuthLinking}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen
+          name="Root"
+          component={user ? MainNavigator : AuthNavigator}
+        />
+        <Stack.Screen
+          name="NotFound"
+          component={NotFoundScreen}
+          options={{ title: '404 screen!' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

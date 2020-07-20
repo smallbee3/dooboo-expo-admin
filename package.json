@@ -38,6 +38,7 @@
     "dooboo-ui": "^0.0.2",
     "expo": "^38.0.8",
     "expo-auth-session": "^1.4.1",
+    "expo-linear-gradient": "^8.2.1",
     "expo-localization": "~8.2.1",
     "expo-splash-screen": "^0.4.0",
     "i18n-js": "^3.7.1",

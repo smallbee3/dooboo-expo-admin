@@ -20,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@dooboo-ui/theme": "^0.0.1",
+    "@expo/webpack-config": "^0.12.20",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/core": "^5.12.1",
     "@react-navigation/native": "^5.7.1",

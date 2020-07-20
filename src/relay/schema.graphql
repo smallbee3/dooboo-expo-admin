@@ -1,0 +1,217 @@
+scalar Auth
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+enum AuthType {
+  email
+  facebook
+  google
+  apple
+}
+
+enum changeType {
+  add
+  remove
+}
+
+input changeUserInWorkspaceInput {
+  id: String
+  changeType: changeType
+}
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format
+outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
+representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+scalar DateTime
+
+scalar Gender
+
+type Mutation {
+  createNotification(token: String!, device: String, os: String): Notification!
+  deleteNotification(id: Int!): Notification
+  createPermission(permission: PermissionCreateInput): Permission!
+  updatePermission(permission: PermissionUpdateInput): Permission!
+  deletePermission(id: Int!): Permission
+  singleUpload(file: Upload, dir: String): String
+  signUp(user: UserCreateInput): User!
+  signInEmail(email: String!, password: String!): AuthPayload!
+  sendVerification(email: String!): Boolean!
+  updateProfile(user: UserUpdateInput): User!
+  findPassword(email: String!): Boolean!
+  changeEmailPassword(password: String!, newPassword: String!): Boolean!
+  signInWithFacebook(accessToken: String!): AuthPayload!
+  signInWithGoogle(accessToken: String!): AuthPayload!
+  deleteUser(id: String!): User!
+  createWorkspace(workspace: WorkspaceCreateInput): Workspace!
+  updateWorkspace(workspace: WorkspaceUpdateInput): Workspace!
+  deleteWorkspace(id: String!): Workspace
+  changeUserOfWorkspace(id: String!, users: [changeUserInWorkspaceInput!]): Workspace
+}
+
+type Notification {
+  id: Int!
+  token: String!
+  device: String
+  os: String
+  user: User!
+  createdAt: DateTime
+}
+
+type Permission {
+  id: Int!
+  isAdmin: Boolean
+  basicInfo: PermissionType
+  product: PermissionType
+  order: PermissionType
+  delivery: PermissionType
+  customer: PermissionType
+  inventory: PermissionType
+  sales: PermissionType
+  user: User!
+  workspace: Workspace!
+}
+
+input PermissionCreateInput {
+  isAdmin: Boolean
+  basicInfo: PermissionType
+  product: PermissionType
+  order: PermissionType
+  delivery: PermissionType
+  customer: PermissionType
+  inventory: PermissionType
+  sales: PermissionType
+  userId: String
+  workspaceId: String
+}
+
+enum PermissionType {
+  none
+  read
+  write
+  admin
+}
+
+input PermissionUpdateInput {
+  id: Int
+  isAdmin: Boolean
+  basicInfo: PermissionType
+  product: PermissionType
+  order: PermissionType
+  delivery: PermissionType
+  customer: PermissionType
+  inventory: PermissionType
+  sales: PermissionType
+  userId: String
+  workspaceId: String
+}
+
+type Profile {
+  socialId: String
+  authType: AuthType
+}
+
+type Query {
+  notifications(userId: String): [Notification!]
+  permission(id: Int): Permission
+  permissions: [Permission!]
+  me: User
+  user(id: String): User
+  workspace(id: String): Workspace
+  workspaces: [Workspace!]
+}
+
+type Subscription {
+  userSignedIn(userId: String!): User!
+  userUpdated(userId: String!): User!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type User {
+  id: String!
+  email: String
+  name: String
+  nickname: String
+  thumbURL: String
+  photoURL: String
+  birthday: DateTime
+  gender: Gender
+  phone: String
+  statusMessage: String
+  verified: Boolean
+  lastSignedIn: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  profile: Profile
+  permissions: [Permission!]
+  workspaces: [Workspace!]
+  notifications: [Notification!]
+}
+
+input UserCreateInput {
+  email: String!
+  password: String!
+  name: String
+  nickname: String
+  birthday: Date
+  gender: Gender
+  phone: String
+  statusMessage: String
+}
+
+input UserUpdateInput {
+  email: String
+  name: String
+  nickname: String
+  birthday: Date
+  phone: String
+  statusMessage: String
+  gender: Gender
+}
+
+type Workspace {
+  id: String!
+  organization: String!
+  representativeName: String!
+  registrationNumber: String!
+  registrationPhotoURL: String!
+  zipCode: String!
+  address: String!
+  fax: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  users: [User!]
+  permissions: [Permission!]
+}
+
+input WorkspaceCreateInput {
+  organization: String!
+  representativeName: String!
+  registrationNumber: String!
+  registrationPhotoURL: String!
+  zipCode: String!
+  address: String!
+  fax: String
+}
+
+input WorkspaceUpdateInput {
+  id: String
+  organization: String
+  representativeName: String
+  registrationNumber: String
+  registrationPhotoURL: String
+  zipCode: String
+  address: String
+  fax: String
+}
+

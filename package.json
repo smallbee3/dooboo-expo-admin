@@ -20,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@dooboo-ui/theme": "^0.0.1",
+    "@expo/match-media": "^0.0.0-beta.2",
     "@expo/webpack-config": "^0.12.20",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/core": "^5.12.1",
@@ -41,6 +42,7 @@
     "react-native-web": "~0.13.3",
     "react-native-webview": "9.4.0",
     "react-navigation-stack": "^2.3.10",
+    "react-responsive": "^8.1.0",
     "sentry-expo": "^2.1.2",
     "styled-components": "^5.1.1"
   },
@@ -56,6 +58,7 @@
     "@types/jest": "^26.0.5",
     "@types/react": "~16.9.43",
     "@types/react-native": "~0.63.1",
+    "@types/react-responsive": "^8.0.2",
     "@types/react-test-renderer": "^16.9",
     "@types/styled-components": "^5.1.1",
     "babel-jest": "^26.1.0",

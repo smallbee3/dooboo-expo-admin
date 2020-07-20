@@ -1,0 +1,457 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[SignUp] Rendering renders without crashing 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "width": 528,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#1B1B21",
+                "fontSize": 36,
+                "fontStyle": "normal",
+                "fontWeight": "bold",
+                "lineHeight": 53,
+                "marginBottom": 80,
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          Sign Up
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "alignSelf": "stretch",
+                "display": "flex",
+                "flexDirection": "column",
+              },
+              Object {
+                "marginBottom": 25,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#b9b9c4",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "marginBottom": 5,
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                  "lineHeight": 21,
+                },
+                null,
+              ]
+            }
+          >
+            Email
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            multiline={false}
+            placeholder="email@email.com"
+            rejectResponderTermination={true}
+            style={
+              Array [
+                Object {
+                  "fontSize": 15,
+                  "fontWeight": "500",
+                  "paddingBottom": 15,
+                  "paddingTop": 15,
+                },
+                Object {
+                  "alignItems": "center",
+                  "color": "#1B1B21",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+              ]
+            }
+            testID="input-email"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "width": "100%",
+                },
+                undefined,
+                Object {
+                  "borderBottomWidth": 0.6,
+                  "borderColor": "#eaeaf9",
+                },
+                null,
+              ]
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignSelf": "stretch",
+                "display": "flex",
+                "flexDirection": "column",
+              },
+              Object {
+                "marginBottom": 25,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#b9b9c4",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "marginBottom": 5,
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                  "lineHeight": 21,
+                },
+                null,
+              ]
+            }
+          >
+            Password
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            multiline={false}
+            placeholder="Password"
+            rejectResponderTermination={true}
+            secureTextEntry={true}
+            style={
+              Array [
+                Object {
+                  "fontSize": 15,
+                  "fontWeight": "500",
+                  "paddingBottom": 15,
+                  "paddingTop": 15,
+                },
+                Object {
+                  "alignItems": "center",
+                  "color": "#1B1B21",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+              ]
+            }
+            testID="input-password-first"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "width": "100%",
+                },
+                undefined,
+                Object {
+                  "borderBottomWidth": 0.6,
+                  "borderColor": "#eaeaf9",
+                },
+                null,
+              ]
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignSelf": "stretch",
+                "display": "flex",
+                "flexDirection": "column",
+              },
+              Object {
+                "marginBottom": 25,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#b9b9c4",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "marginBottom": 5,
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                  "lineHeight": 21,
+                },
+                null,
+              ]
+            }
+          >
+            Password Confirm
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            multiline={false}
+            placeholder="Password Confirm"
+            rejectResponderTermination={true}
+            secureTextEntry={true}
+            style={
+              Array [
+                Object {
+                  "fontSize": 15,
+                  "fontWeight": "500",
+                  "paddingBottom": 15,
+                  "paddingTop": 15,
+                },
+                Object {
+                  "alignItems": "center",
+                  "color": "#1B1B21",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+              ]
+            }
+            testID="input-password-second"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "width": "100%",
+                },
+                undefined,
+                Object {
+                  "borderBottomWidth": 0.6,
+                  "borderColor": "#eaeaf9",
+                },
+                null,
+              ]
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "marginBottom": 40,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            activeOpacity={1}
+            reverse={false}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                },
+              ]
+            }
+            testID="checkbox-agreement"
+          >
+            <View
+              style={
+                Array [
+                  Object {},
+                ]
+              }
+            >
+              <View
+                checked={false}
+                color="#609FFF"
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#ffffff",
+                      "borderColor": "#bababa",
+                      "borderRadius": 2,
+                      "borderStyle": "solid",
+                      "borderWidth": 1,
+                      "height": 20,
+                      "paddingBottom": 2,
+                      "paddingLeft": 2,
+                      "paddingRight": 2,
+                      "paddingTop": 2,
+                      "width": 20,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "canInstrument": true,
+                      "createTransformer": [Function],
+                      "getCacheKey": [Function],
+                      "process": [Function],
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": "100%",
+                        "width": "100%",
+                      },
+                    ]
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "paddingBottom": 5,
+                    "paddingLeft": 5,
+                    "paddingRight": 5,
+                    "paddingTop": 5,
+                  },
+                ]
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Array [
+                    Object {
+                      "color": "#1B1B21",
+                      "fontSize": 12,
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                      "lineHeight": 18,
+                      "marginLeft": 8,
+                      "width": 420,
+                    },
+                  ]
+                }
+              >
+                I have confirmed and agree to the terms and conditions and personal information collection and usage consent form at the time of signing up
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          delayPressIn={30}
+          testID="btn-submit"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                  "borderColor": "blue",
+                  "flexDirection": "row",
+                  "height": 52,
+                  "justifyContent": "center",
+                  "width": 320,
+                },
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#609FFF",
+                  "borderRadius": 6,
+                  "height": 46,
+                  "marginBottom": 25,
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#069ccd",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "white",
+                    "fontSize": 14,
+                    "fontWeight": "bold",
+                    "letterSpacing": -0.5,
+                    "lineHeight": 21,
+                  },
+                ]
+              }
+            >
+              Verify email
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

@@ -15,7 +15,7 @@ import {
 } from '../../__generated__/HomeSignInWithGoogleMutation.graphql';
 import {
   IC_ALERT_TRIANGLE,
-  IC_HOME_BACKGROUND,
+  IC_INTRO_BACKGROUND,
   SvgFacebook,
   SvgGoogle,
 } from '../../utils/icons';
@@ -45,7 +45,7 @@ interface Props {
 }
 
 const Container = styled.ImageBackground.attrs({
-  source: IC_HOME_BACKGROUND,
+  source: IC_INTRO_BACKGROUND,
   imageStyle: { opacity: 0.3 },
 })`
   flex-direction: row;

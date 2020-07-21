@@ -22,12 +22,18 @@ export const colors = {
 };
 
 export const light = {
-  isBlack: true,
   mainBackground: colors.lightGray,
+  mainHeader: 'white',
+  mainDrawer: 'white',
+  authBackground: colors.lightBackground,
+  authHeader: 'white',
+  authHeaderFont: '#707683',
+  authIntroHeader: 'black',
+  authIntroHeaderFont: 'white',
+
   primary: colors.primary,
   secondary: colors.secondary,
   logo: colors.primary,
-  headerBackground: 'black',
   drawerBackground: '#f8f8f8',
   drawerItemBorder: '#e6e6e6',
   drawerItemLabel: '#555',
@@ -35,7 +41,6 @@ export const light = {
   overlayFont: 'white',
   overlayForm: 'rgba(255, 255, 255, 0.1)',
   overlayFormBorder: 'rgba(255, 255, 255, 0.3)',
-  background: colors.lightBackground,
   btnPrimary: colors.primary,
   btnPrimaryBorder: colors.skyBlue,
   btnPrimaryFont: 'white',
@@ -62,12 +67,18 @@ export const light = {
 export type Theme = typeof light;
 
 export const dark: Theme = {
-  isBlack: false,
   mainBackground: colors.dark,
+  mainHeader: 'black',
+  mainDrawer: '#353535',
+  authBackground: colors.dark,
+  authHeader: '#353535',
+  authHeaderFont: 'rgba(255, 255, 255, 0.7)',
+  authIntroHeader: '#353535',
+  authIntroHeaderFont: 'rgba(255, 255, 255, 0.7)',
+
   primary: colors.primary,
   secondary: colors.secondary,
-  logo: '#76B1FF',
-  headerBackground: 'black',
+  logo: 'white',
   drawerBackground: '#f8f8f8',
   drawerItemBorder: '#e6e6e6',
   drawerItemLabel: '#555',
@@ -75,7 +86,6 @@ export const dark: Theme = {
   overlayFont: 'white',
   overlayForm: 'rgba(255, 255, 255, 0.1)',
   overlayFormBorder: 'rgba(255, 255, 255, 0.3)',
-  background: colors.dark,
   btnPrimary: colors.primary,
   btnPrimaryBorder: colors.skyBlue,
   btnPrimaryFont: 'white',
@@ -87,7 +97,7 @@ export const dark: Theme = {
   tint: '#a3a3a3',
   title: 'white',
   btnBlue: colors.dark,
-  boxShadow: 'rgba(144, 160, 183, 0.15)',
+  boxShadow: 'rgba(144, 160, 183, 0.1)',
   grayFont: colors.gray,
   contentShadow: '#ecf0f5',
   content: 'black',

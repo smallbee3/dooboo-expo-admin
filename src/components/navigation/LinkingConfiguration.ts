@@ -20,20 +20,18 @@ export const AuthLinking = {
   },
 };
 
-export const MainLinking = {
+export const AdminLinking = {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
       Root: {
         screens: {
           Intro: 'intro',
-          WorkspaceAdd: 'workspace_add',
-          Profile: 'profile',
-          Workspace: {
-            screens: {
-              Root: 'workspace',
-            },
-          },
+          UIBox: 'table',
+          User: 'user',
+          Workspace: 'workspace',
+          // WorkspaceAdd: 'workspace_add',
+          // Profile: 'profile',
         },
       },
       NotFound: '*',

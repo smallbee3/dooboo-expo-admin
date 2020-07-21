@@ -357,6 +357,31 @@ const Home: React.FC<Props> = (props): ReactElement => {
     <Container>
       <LeftContainer>
         <MainTitle>{getString('APP_TITLE')}</MainTitle>
+        <Button
+          testID="login-btn"
+          style={{
+            borderRadius: 6,
+            width: 150,
+            height: 40,
+            alignItems: 'center',
+            marginBottom: 20,
+            backgroundColor: theme.overlayForm,
+            borderWidth: 1,
+            borderStyle: 'solid',
+            borderColor: theme.overlayFormBorder,
+            marginTop: 20,
+          }}
+          textStyle={{
+            fontSize: 14,
+            fontWeight: 'bold',
+            color: theme.btnPrimaryFont,
+            lineHeight: 21,
+            letterSpacing: -0.5,
+          }}
+          onPress={(): void => props.navigation.navigate('MainBoard')}
+          text="둘러보기"
+          isLoading={isInFlightEmail}
+        />
       </LeftContainer>
 
       <RightContainer>

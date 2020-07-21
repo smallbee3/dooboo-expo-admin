@@ -1,9 +1,10 @@
-import { AuthLinking, MainLinking } from './LinkingConfiguration';
+import { AuthLinking, AdminLinking } from './LinkingConfiguration';
 import {
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
 
+import AdminNavigator from './AdminNavigator';
 import AuthNavigator from './AuthNavigator';
 import MainNavigator from './MainNavigator';
 import { NavigationContainer } from '@react-navigation/native';
@@ -24,16 +25,17 @@ export type RootStackNavigationProps<
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator(): React.ReactElement {
-  const {
+  let {
     state: { user },
   } = useAppContext();
+  user = true;
 
   return (
-    <NavigationContainer linking={user?.verified ? MainLinking : AuthLinking}>
+    <NavigationContainer linking={user ? AdminLinking : AuthLinking}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen
           name="Root"
-          component={user ? MainNavigator : AuthNavigator}
+          component={ !user ? AuthNavigator : AdminNavigator}
         />
         <Stack.Screen
           name="NotFound"

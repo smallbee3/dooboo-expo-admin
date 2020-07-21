@@ -1,6 +1,6 @@
 {
   "APP_NAME": "Prime",
-  "APP_TITLE": "Open market integrated solution system\nfor shopping mall managers",
+  "APP_TITLE": "Free admin platform for web managers",
   "HOME": "Home",
   "LOGIN": "Login",
   "LOGOUT": "Logout",
@@ -53,7 +53,7 @@
   "INTRO_WELLCOME_COMMENT": "Please complete the service request to use Prime",
   "BOOKMARK": "Bookmarks",
   "STATUS": "Status",
-  "ACCOUNT": "Account",
+  "ACCOUNT_SETTINGS": "Account",
   "CLIENT": "Clients",
   "PRODUCT": "Product",
   "ORDER_DELIVERY": "Order/Delivery",

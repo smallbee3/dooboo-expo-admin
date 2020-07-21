@@ -1,6 +1,6 @@
 {
   "APP_NAME": "Prime",
-  "APP_TITLE": "쇼핑몰 관리자를 위한\n오픈마켓 통합솔루션 시스템",
+  "APP_TITLE": "직접 구축하는\n통합 어드민 솔루션",
   "HOME": "홈",
   "LOGIN": "로그인",
   "LOGOUT": "로그아웃",
@@ -53,7 +53,7 @@
   "INTRO_WELLCOME_COMMENT": "프라임 이용을 위해 서비스 신청을 완료해주세요",
   "BOOKMARK": "즐겨찾기",
   "STATUS": "현황",
-  "ACCOUNT": "계정설정",
+  "ACCOUNT_SETTINGS": "계정설정",
   "CLIENT": "거래처",
   "PRODUCT": "상품",
   "ORDER_DELIVERY": "주문 / 배송",

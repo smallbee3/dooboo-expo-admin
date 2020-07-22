@@ -24,6 +24,12 @@ type TableNamespace = {
   Cell: typeof TableCell;
 };
 
+const TableWrapper = styled.View`
+  border-radius: 6px;
+  box-shadow: 0px 4px 30px #E7EBF0;
+  margin: 7px;
+`;
+
 const Container = styled.View`
   flex: 1;
   border-top-left-radius: 4px;
@@ -134,52 +140,54 @@ const Table: React.FC<Props> & TableNamespace = ({
               }}
             ></Button>
           </View>
-          <Table.Header headerStyle={{ backgroundColor: 'white' }}>
-            <Table.Title isCheckAble={!isCheckAble} />
+          <TableWrapper>
+            <Table.Header headerStyle={{ backgroundColor: 'white' }}>
+              <Table.Title isCheckAble={!isCheckAble} />
 
-            {/** have a customGroup or undefined  */}
-            {(customGroup || group)?.map((field: any, index: number) => {
+              {/** have a customGroup or undefined  */}
+              {(customGroup || group)?.map((field: any, index: number) => {
+                return (
+                  <Table.Title
+                    numberOfLines={1}
+                    key={`${field}-${index}`}
+                    isCheckAble={index === 0}>
+                    {field}
+                  </Table.Title>
+                );
+              })}
+            </Table.Header>
+            {data.map((item, i) => {
+              const isItemSelected = isSelected(item[group[0]]);
               return (
-                <Table.Title
-                  numberOfLines={1}
-                  key={`${field}-${index}`}
-                  isCheckAble={index === 0}>
-                  {field}
-                </Table.Title>
+                <Table.Row
+                  key={`row-${item}-${i}`}
+                  isChecked={!!isItemSelected}
+                  rowStyle={{ backgroundColor: 'white' }}>
+                  {/* If CheckAble is true */}
+                  {isCheckAble ? (
+                    <Table.Cell cellStyle={[{ justifyContent: 'center' }]}>
+                      <CheckBox
+                        onClick={(): void => handleClick(item[group[0]])}
+                        value={!!isItemSelected}
+                      />
+                    </Table.Cell>
+                  ) : (
+                    <Table.Cell isShort={!isCheckAble} />
+                  )}
+                  {/** Body */}
+                  {group?.map((param: any, index: number) => {
+                    return (
+                      <Table.Cell
+                        key={`cell-${param}-${index}`}
+                        isShort={index === 0}>
+                        {item[param]}
+                      </Table.Cell>
+                    );
+                  })}
+                </Table.Row>
               );
             })}
-          </Table.Header>
-          {data.map((item, i) => {
-            const isItemSelected = isSelected(item[group[0]]);
-            return (
-              <Table.Row
-                key={`row-${item}-${i}`}
-                isChecked={!!isItemSelected}
-                rowStyle={{ backgroundColor: 'white' }}>
-                {/* If CheckAble is true */}
-                {isCheckAble ? (
-                  <Table.Cell cellStyle={[{ justifyContent: 'center' }]}>
-                    <CheckBox
-                      onClick={(): void => handleClick(item[group[0]])}
-                      value={!!isItemSelected}
-                    />
-                  </Table.Cell>
-                ) : (
-                  <Table.Cell isShort={!isCheckAble} />
-                )}
-                {/** Body */}
-                {group?.map((param: any, index: number) => {
-                  return (
-                    <Table.Cell
-                      key={`cell-${param}-${index}`}
-                      isShort={index === 0}>
-                      {item[param]}
-                    </Table.Cell>
-                  );
-                })}
-              </Table.Row>
-            );
-          })}
+          </TableWrapper>
         </Container>
       </ScrollView>
     </ScrollView>

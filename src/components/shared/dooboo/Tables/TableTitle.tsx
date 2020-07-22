@@ -24,6 +24,7 @@ const StyledText = styled.Text`
   font-size: 12px;
   align-items: center;
   text-align: center;
+  font-weight: 800;
 `;
 
 function TableTitle(props: Props): React.ReactElement {

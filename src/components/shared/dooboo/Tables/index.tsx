@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ScrollView, StyleProp, Text, ViewStyle } from 'react-native';
+import { ScrollView, StyleProp, Text, View, ViewStyle } from 'react-native';
 
 import CheckBox from './CheckBox';
 import TableCell from './TableCell';
@@ -70,10 +70,25 @@ const Table: React.FC<Props> & TableNamespace = ({
       }}>
       <ScrollView horizontal>
         <Container>
-          <Text>
-            {selected.length > 0 ? `${selected.length} item selected` : null}{' '}
-          </Text>
-          <Table.Header headerStyle={{ backgroundColor: '#f9f9f9' }}>
+          <View
+            style={{
+              paddingBottom: 15,
+              flexDirection: 'row',
+            }}>
+            <Text
+              style={{
+                color: '#6DA6FC',
+              }}>
+              {selected.length > 0 ? `${selected.length}개 선택됨` : null}{'   '}
+            </Text>
+            <Text
+              style={{
+                color: '#828282',
+              }}>
+              {`총 ${data.length}개`}
+            </Text>
+          </View>
+          <Table.Header headerStyle={{ backgroundColor: 'white' }}>
             <Table.Title isCheckAble={!isCheckAble} />
 
             {/** have a customGroup or undefined  */}

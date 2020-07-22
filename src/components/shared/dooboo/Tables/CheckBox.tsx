@@ -8,11 +8,12 @@ const CheckView = styled.View<{ checked: boolean }>`
   width: 20px;
   border-width: 2px;
   border-radius: 2px;
-  border-color: #d5d5d5;
+  border-color: ${({ checked }): string =>
+    !checked ? '#CBD7E5' : '#6DA6FC'};  
   align-items: center;
   justify-content: center;
   background-color: ${({ checked }): string =>
-    !checked ? '#ffffff' : '#d5d5d5'};
+    !checked ? '#ffffff' : '#6DA6FC'};
 `;
 
 const CheckMark = styled.Image`

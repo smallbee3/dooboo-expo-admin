@@ -16,6 +16,7 @@ import svgPhone from '../../assets/svgs/phone.svg';
 import svgStar from '../../assets/svgs/star.svg';
 import svgTruck from '../../assets/svgs/truck.svg';
 import svgUsers from '../../assets/svgs/users.svg';
+import icMagnifier from '../../assets/icons/magnifier.png';
 
 export const SvgFacebook = svgFacebook;
 export const SvgGoogle = svgGoogle;
@@ -37,3 +38,6 @@ export const IC_AVATAR = icAvatar;
 export const IC_ALERT_TRIANGLE = icAlertTriangle;
 
 export default [IC_INTRO_BACKGROUND];
+
+// Admin
+export const IC_MAGNIFIER = icMagnifier;

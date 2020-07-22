@@ -17,6 +17,7 @@ import svgStar from '../../assets/svgs/star.svg';
 import svgTruck from '../../assets/svgs/truck.svg';
 import svgUsers from '../../assets/svgs/users.svg';
 import icMagnifier from '../../assets/icons/magnifier.png';
+import icSeachrMagnifier from '../../assets/icons/search_magnifier.png';
 
 export const SvgFacebook = svgFacebook;
 export const SvgGoogle = svgGoogle;
@@ -41,3 +42,4 @@ export default [IC_INTRO_BACKGROUND];
 
 // Admin
 export const IC_MAGNIFIER = icMagnifier;
+export const IC_SEARCH_MAGNIFIER = icSeachrMagnifier;

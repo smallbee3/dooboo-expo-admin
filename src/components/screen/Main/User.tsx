@@ -1,15 +1,8 @@
 import { Animated, ImageSourcePropType } from 'react-native';
 import React, { ReactElement, useRef, useState } from 'react';
-import {
-  SvgBarChart,
-  SvgPackage,
-  SvgPhone,
-  SvgStar,
-  SvgTruck,
-  SvgUsers,
-} from '../../../utils/icons';
 
 import { Button } from 'dooboo-ui';
+import SearchInputBox from './SearchInputBox';
 import { getString } from '../../../../STRINGS';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
@@ -83,6 +76,9 @@ const User: React.FC = () => {
     <Container>
       <Wrapper>
         <Title style={{ margin: 20 }}>회원목록</Title>
+
+        <SearchInputBox />
+
         <BoxContainer>
           <WorksBoard>
             <SubTitle>{getString('EMPTY_INFORMATION')}</SubTitle>

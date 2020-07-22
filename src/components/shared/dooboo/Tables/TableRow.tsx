@@ -11,12 +11,12 @@ interface Props {
 
 const Container = styled.View`
   width: 100%;
-  height: 48px;
+  height: 50px;
 `;
 const Content = styled.View<{ isChecked: boolean }>`
-  height: 48px;
+  height: 50px;
   border-bottom-width: 1px;
-  border-bottom-color: lightgray;
+  border-bottom-color: #EDEDED;
   flex-direction: row;
   background: ${({ isChecked }): string => (isChecked ? '#f2f9ff' : 'white')};
 `;

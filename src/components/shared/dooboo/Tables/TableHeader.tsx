@@ -11,8 +11,10 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
 const HeaderContainer = styled.View`
   flex-direction: row;
   height: 48px;
-  border-bottom-width: 1px;
-  border-bottom-color: lightgray;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F88EA;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 `;
 
 function TableHeader(props: Props): ReactElement {

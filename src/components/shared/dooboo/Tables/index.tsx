@@ -69,7 +69,11 @@ const Table: React.FC<Props> & TableNamespace = ({
         width: '100%',
         height: '100%',
       }}>
-      <ScrollView horizontal>
+      <ScrollView 
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
         <Container>
           <View
             style={{

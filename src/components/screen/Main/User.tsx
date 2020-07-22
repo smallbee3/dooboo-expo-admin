@@ -3,6 +3,7 @@ import React, { ReactElement, useRef, useState } from 'react';
 
 import { Button } from 'dooboo-ui';
 import SearchInputBox from './SearchInputBox';
+import TableBox from './TableBox';
 import { getString } from '../../../../STRINGS';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
@@ -24,31 +25,6 @@ const Title = styled.Text`
   font-size: 24px;
   line-height: 34px;
   color: ${({ theme }): string => theme.title};
-`;
-
-const BoxContainer = styled.View`
-  justify-content: flex-start;
-  flex-direction: row;
-  margin-left: 20px;
-  margin-right: 20px;
-`;
-
-const SubTitle = styled.Text`
-  margin-bottom: 12px;
-  font-size: 14px;
-  line-height: 24px;
-  align-items: center;
-  text-align: center;
-  color: ${({ theme }): string => theme.grayFont};
-`;
-
-const WorksBoard = styled.View`
-  width: 100%;
-  height: 170px;
-  background-color: ${({ theme }): string => theme.content};
-  box-shadow: 0px 4px 15px ${({ theme }): string => theme.contentShadow};
-  border-radius: 6px;
-  justify-content: center;
 `;
 
 const User: React.FC = () => {
@@ -79,24 +55,7 @@ const User: React.FC = () => {
 
         <SearchInputBox />
 
-        <BoxContainer>
-          <WorksBoard>
-            <SubTitle>{getString('EMPTY_INFORMATION')}</SubTitle>
-            <Button
-              text={getString('ADDITEM')}
-              style={{
-                width: 119,
-                height: 36,
-                backgroundColor: theme.btnBlue,
-                borderRadius: 4,
-              }}
-              textStyle={{ fontSize: 14, color: theme.overlayFont }}
-              onPress={(): void => {
-                navigation.navigate('WorkspaceForm');
-              }}
-            />
-          </WorksBoard>
-        </BoxContainer>
+        <TableBox />
       </Wrapper>
     </Container>
   );

@@ -1,5 +1,5 @@
 import React, { ReactElement, useRef, useState } from 'react';
-import Table from '../../shared/dooboo/Tables';
+import Table from '../../shared/dooboo/Tables/index';
 import styled from 'styled-components/native';
 
 const items = [

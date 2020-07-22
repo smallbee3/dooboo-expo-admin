@@ -5,6 +5,7 @@ import { ScrollView, StyleProp, Text, View, ViewStyle } from 'react-native';
 import { Button } from 'dooboo-ui';
 import CheckBox from './CheckBox';
 import TableCell from './TableCell';
+import TableFooter from './TableFooter';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import TableTitle from './TableTitle';
@@ -19,6 +20,7 @@ export interface Props {
 
 type TableNamespace = {
   Title: typeof TableTitle;
+  Footer: typeof TableFooter;
   Header: typeof TableHeader;
   Row: typeof TableRow;
   Cell: typeof TableCell;
@@ -187,6 +189,9 @@ const Table: React.FC<Props> & TableNamespace = ({
                 </Table.Row>
               );
             })}
+            <Table.Footer>
+
+            </Table.Footer>
           </TableWrapper>
         </Container>
       </ScrollView>
@@ -196,6 +201,7 @@ const Table: React.FC<Props> & TableNamespace = ({
 
 Table.Title = TableTitle;
 Table.Header = TableHeader;
+Table.Footer = TableFooter;
 Table.Row = TableRow;
 Table.Cell = TableCell;
 

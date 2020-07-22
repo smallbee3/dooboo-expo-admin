@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { ScrollView, StyleProp, Text, View, ViewStyle } from 'react-native';
 
+import { Button } from 'dooboo-ui';
 import CheckBox from './CheckBox';
 import TableCell from './TableCell';
 import TableHeader from './TableHeader';
@@ -74,6 +75,7 @@ const Table: React.FC<Props> & TableNamespace = ({
             style={{
               paddingBottom: 15,
               flexDirection: 'row',
+              alignItems: 'center',
             }}>
             <Text
               style={{
@@ -87,6 +89,46 @@ const Table: React.FC<Props> & TableNamespace = ({
               }}>
               {`총 ${data.length}개`}
             </Text>
+            <Button
+              text='삭제'
+              style={{
+                backgroundColor: 'white',
+                height: '30px',
+                width: '58px',
+                marginLeft: '20px',
+                borderRadius: '3px',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: '#323C47',
+              }}
+              textStyle={{
+                color: '#323C47',
+                fontSize: '14px',
+              }}
+              onPress={():void => {
+                setSelected([]);
+              }}
+            ></Button>
+            <Button
+              text='선택해제'
+              style={{
+                backgroundColor: 'white',
+                height: '30px',
+                width: '84px',
+                marginLeft: '10px',
+                borderRadius: '3px',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: '#323C47',
+              }}
+              textStyle={{
+                color: '#323C47',
+                fontSize: '14px',
+              }}
+              onPress={():void => {
+                setSelected([]);
+              }}
+            ></Button>
           </View>
           <Table.Header headerStyle={{ backgroundColor: 'white' }}>
             <Table.Title isCheckAble={!isCheckAble} />

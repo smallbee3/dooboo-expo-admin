@@ -7290,10 +7290,10 @@ domutils@^2.0.0:
     domelementtype "^2.0.1"
     domhandler "^3.0.0"
 
-dooboo-ui@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/dooboo-ui/-/dooboo-ui-0.0.2.tgz#ee7f3e7d9182f9f0e817bf95526a85bfaf82a654"
-  integrity sha512-TPQw3NZXmaXxmC9iybinFDjcxYlahSaCinIzsz/5/497QDE4ts3iz1VCFBOZVR3MesuSPtrx1qC93AkF0jxh1Q==
+dooboo-ui@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/dooboo-ui/-/dooboo-ui-0.0.3.tgz#bc1f3f11b43b818c7602a649ca18dcdad09e2090"
+  integrity sha512-DP3DQNZ6MaaNCLQSlpOXKresQARWRWzkHrj+O1HEGBobPniHEB4D8TV87UZv9MjYTCW1tXn1bp0bZ4WCyFti1w==
   dependencies:
     dooboolab-welcome "^1.2.0"
 

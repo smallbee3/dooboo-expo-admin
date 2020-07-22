@@ -35,7 +35,7 @@
     "@react-navigation/core": "^5.12.1",
     "@react-navigation/native": "^5.7.1",
     "@react-navigation/stack": "^5.7.1",
-    "dooboo-ui": "^0.0.2",
+    "dooboo-ui": "^0.0.3",
     "expo": "^38.0.8",
     "expo-auth-session": "^1.4.1",
     "expo-linear-gradient": "^8.2.1",

@@ -3435,6 +3435,14 @@
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
 
+"@restart/hooks@^0.3.1":
+  version "0.3.25"
+  resolved "https://registry.yarnpkg.com/@restart/hooks/-/hooks-0.3.25.tgz#11004139ad1c70d2f5965a8939dcb5aeb96aa652"
+  integrity sha512-m2v3N5pxTsIiSH74/sb1yW8D9RxkJidGW+5Mfwn/lHb2QzhZNlaU1su7abSyT9EGf0xS/0waLjrf7/XxQHUk7w==
+  dependencies:
+    lodash "^4.17.15"
+    lodash-es "^4.17.15"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -11444,6 +11452,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash-es@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
+  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
+
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -14398,6 +14411,14 @@ relay-config@^10.0.0:
   integrity sha512-0t1h3u3oDfFcp5pQCOrUXiRdC8Dc2LICAoEWPV1CKm4u9UBDT7RsJRvtClaoPjs4cWNrs0Hm5my9J+EVa6FekQ==
   dependencies:
     cosmiconfig "^5.0.5"
+
+relay-hooks@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/relay-hooks/-/relay-hooks-3.5.2.tgz#98035099988e8f87a3369f3a8a4531068d59bafe"
+  integrity sha512-zqtSajxbNCLRQV9t5mBu1LcLbVjTpdNhhxzCWPVtWYvwiXFgx/8tuC3hFYP8EF7l3ogwlqt5rcswK6xmONC81Q==
+  dependencies:
+    "@restart/hooks" "^0.3.1"
+    fbjs "^1.0.0"
 
 relay-runtime@10.0.0:
   version "10.0.0"

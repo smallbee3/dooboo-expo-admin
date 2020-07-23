@@ -34,6 +34,13 @@ export enum AuthType {
   Apple = 'apple'
 }
 
+export type CursorUserConnection = {
+  __typename?: 'cursorUserConnection';
+  cursor: Scalars['String'];
+  page: Scalars['Int'];
+  isCurrent: Scalars['Boolean'];
+};
+
 
 
 
@@ -163,6 +170,27 @@ export type Notification = {
   createdAt?: Maybe<Scalars['DateTime']>;
 };
 
+export type PageCursorsUserConnection = {
+  __typename?: 'pageCursorsUserConnection';
+  first?: Maybe<CursorUserConnection>;
+  previous?: Maybe<CursorUserConnection>;
+  around?: Maybe<Array<CursorUserConnection>>;
+  next?: Maybe<CursorUserConnection>;
+  last?: Maybe<CursorUserConnection>;
+};
+
+export type PageEdgesUserConnection = {
+  __typename?: 'pageEdgesUserConnection';
+  cursor: Scalars['String'];
+  node?: Maybe<User>;
+};
+
+export type PaginationUserConnection = {
+  __typename?: 'paginationUserConnection';
+  pageEdges?: Maybe<Array<PageEdgesUserConnection>>;
+  pageCursors?: Maybe<PageCursorsUserConnection>;
+};
+
 export type Permission = {
   __typename?: 'Permission';
   id: Scalars['Int'];
@@ -225,6 +253,7 @@ export type Query = {
   permissions?: Maybe<Array<Permission>>;
   me?: Maybe<User>;
   user?: Maybe<User>;
+  users?: Maybe<PaginationUserConnection>;
   workspace?: Maybe<Workspace>;
   workspaces?: Maybe<Array<Workspace>>;
 };
@@ -242,6 +271,17 @@ export type QueryPermissionArgs = {
 
 export type QueryUserArgs = {
   id?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryUsersArgs = {
+  currentPage?: Maybe<Scalars['Int']>;
+  cursor?: Maybe<Scalars['String']>;
+  size?: Maybe<Scalars['Int']>;
+  buttonNum?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Scalars['String']>;
+  orderDirection?: Maybe<Scalars['String']>;
+  whereArgs?: Maybe<Scalars['String']>;
 };
 
 

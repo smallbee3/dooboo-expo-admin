@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Container = styled.View<{ isShort: boolean }>`
-  width: ${({ isShort }): string => (isShort ? '50px' : '100px')};
+  width: ${({ isShort }): string => (isShort ? '50px' : '125px')};
   flex-direction: row;
   align-items: center;
 `;

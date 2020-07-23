@@ -24,7 +24,7 @@ const Pagination = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 30%;
+  width: 20%;
 `;
 
 const ArrowMark = styled.Image`
@@ -36,14 +36,6 @@ const Interpuncts = styled.Image`
   width: 35px;
   height: 24px;
 `;
-
-const pagination = {
-  firstPage: 1,
-  pageNumberArr: [
-    2, 3, 4,
-  ],
-  lastPage: 39,
-};
 
 function TableFooter(props: Props): ReactElement {
   const { children, FooterStyle, pageInfo, pageQuery } = props;

@@ -33,12 +33,17 @@ const Title = styled.Text`
 `;
 
 const usersQuery = graphql`
-  query UsersQuery($size: Int!, $buttonNum: Int!, $currentPage: Int, $cursor: String) {
+  query UsersQuery(
+    $size: Int!
+    $buttonNum: Int!
+    $currentPage: Int
+    $cursor: String
+  ) {
     users(
-      size: $size,
-      buttonNum: $buttonNum,
-      currentPage: $currentPage,
-      cursor: $cursor,
+      size: $size
+      buttonNum: $buttonNum
+      currentPage: $currentPage
+      cursor: $cursor
     ) {
       pageEdges {
         cursor
@@ -85,26 +90,48 @@ const usersQuery = graphql`
   }
 `;
 
+function useUsersQuery({
+  size,
+  buttonNum,
+  currentPage,
+  cursor,
+}: {
+  size: number;
+  buttonNum: number;
+  currentPage?: number;
+  cursor?: string;
+}): any[] {
+  const { props, error, retry, cached } = useQuery<UsersQuery>(usersQuery, {
+    size,
+    buttonNum,
+    currentPage,
+    cursor,
+  });
+
+  return [props, error, retry, cached];
+}
+
 const User: React.FC = () => {
   const [toggle, setToggle] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const { theme } = useThemeContext();
   const navigation = useNavigation();
+  // const [result, setResult] = useState(null);
 
-  const { props, error, retry, cached } = useQuery<UsersQuery>(usersQuery, {
+  const [props, error, retry, cached] = useUsersQuery({
     size: 5,
     buttonNum: 5,
   });
+  // setResult(props);
 
-  useEffect(() => {
-    if (props) {
-      // setUser({
-      //   ...users,
-      // });
-      console.log(1, { props });
-      // console.log(JSON.stringify(props));
-    }
-  }, [props]);
+  // useEffect(() => {
+  //   const [props, error, retry, cached] = useUsersQuery({
+  //     size: 5,
+  //     buttonNum: 5,
+  //   });
+  //   setResult(props);
+  //   console.log(1, { props });
+  // }, []);
 
   const fadeOut = (): void => {
     Animated.timing(fadeAnim, {
@@ -128,7 +155,9 @@ const User: React.FC = () => {
 
         <SearchInputBox />
 
-        <TableBox tableData={props?.users} />
+        <TableBox
+          tableData={props?.users}
+          pageQuery={useUsersQuery} />
       </Wrapper>
     </Container>
   );

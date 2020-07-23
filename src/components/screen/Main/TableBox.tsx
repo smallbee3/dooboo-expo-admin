@@ -11,10 +11,13 @@ const TableWrapper = styled.View`
 
 export default function TableBox({
   tableData,
+  pageQuery,
 }): ReactElement {
   const tableItems = tableData?.pageEdges.map((item) => {
     return item.node;
   });
+
+  const pageInfo = tableData?.pageCursors;
 
   // const customGroupData = [
   //   'ID',
@@ -36,6 +39,8 @@ export default function TableBox({
           // customGroup={customGroupData}
           isCheckAble={true}
           data={tableItems}
+          pageInfo={pageInfo}
+          pageQuery={pageQuery}
           style={{
             borderRadius: 25,
           }}

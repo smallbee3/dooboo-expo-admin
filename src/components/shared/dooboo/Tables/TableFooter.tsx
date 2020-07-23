@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { Text, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { Button } from 'dooboo-ui';
@@ -7,6 +7,8 @@ import styled from 'styled-components/native';
 type Props = React.ComponentPropsWithRef<typeof View> & {
   children: React.ReactNode;
   FooterStyle?: ViewStyle;
+  pageInfo?: any;
+  pageQuery?: any;
 };
 
 const FooterContainer = styled.View`
@@ -44,8 +46,29 @@ const pagination = {
 };
 
 function TableFooter(props: Props): ReactElement {
-  const { children, FooterStyle } = props;
+  const { children, FooterStyle, pageInfo, pageQuery } = props;
+  // const [currentPage, setCurrentPage] = useState(null);
+  // const [previousPage, setPreviousPage] = useState(null);
+  // const [nextPage, setNextPage] = useState(null);
 
+  const currentPage = useRef(null);
+  const previousPage = useRef(null);
+  const nextPage = useRef(null);
+
+  pageInfo.around.map((item, index, arr) => {
+    if (item.isCurrent) {
+      // setCurrentPage(item);
+      currentPage.current = item;
+      if (pageInfo.previous) {
+        // setPreviousPage(arr[index - 1]);
+        previousPage.current = arr[index - 1];
+      }
+      if (pageInfo.next) {
+        // setNextPage(arr[index + 1]);
+        nextPage.current = arr[index + 1];
+      }
+    }
+  });
   return (
     <FooterContainer style={[FooterStyle]} testID="table-header-test-id">
       <Pagination>
@@ -64,23 +87,44 @@ function TableFooter(props: Props): ReactElement {
         >
           <ArrowMark source={require('./__assets__/arrow-left.png')} />
         </TouchableOpacity>
-        <Text style={{ fontSize: '12px'}}>
-          {pagination.firstPage}
-        </Text>
-        {/* <Interpuncts source={require('./__assets__/interpuncts.png')} /> */}
-        {pagination.pageNumberArr.map((item, index) => {
+        {pageInfo?.first && (
+          <>
+            <TouchableOpacity
+              style={{ fontSize: '12px'}}>
+              {pageInfo.first.page}
+            </TouchableOpacity>
+            <Interpuncts source={require('./__assets__/interpuncts.png')} />
+          </>
+        )}
+        {pageInfo.around.map((item, index) => {
           return (
-            <Text key={index} style={{ fontSize: '12px'}}>
-              {item}
-            </Text>
+            <TouchableOpacity
+              key={index}
+              style={{
+                fontSize: '12px',
+                fontWeight: item.isCurrent ? '800' : 'none',
+                color: item.isCurrent ? '#6DA6FC' : 'none',
+              }}>
+              {item.page}
+            </TouchableOpacity>
           );
         })}
-        <Interpuncts source={require('./__assets__/interpuncts.png')} />
-        <Text style={{ fontSize: '12px'}}>
-          {pagination.lastPage}
-        </Text>
+        {pageInfo?.last && (
+          <>
+            <Interpuncts source={require('./__assets__/interpuncts.png')} />
+            <TouchableOpacity
+              style={{ fontSize: '12px'}}>
+              {pageInfo.last.page}
+            </TouchableOpacity>
+          </>
+        )}        
         <TouchableOpacity
-          onPress={() => console.log('go right')}
+          // onPress={() => pageQuery({
+          //   size: 2,
+          //   buttonNum: 5,
+          //   current: nextPage,
+          //   cursor: nextPage.cursor,
+          // })}
           style={{
             justifyContent: 'center',
             alignItems: 'center',
@@ -90,6 +134,7 @@ function TableFooter(props: Props): ReactElement {
             borderWidth: '1.5px',
             borderStyle: 'solid',
             borderColor: '#CBD7E5',
+            disabled: 'true',
           }}
         >
           <ArrowMark source={require('./__assets__/arrow-right.png')} />

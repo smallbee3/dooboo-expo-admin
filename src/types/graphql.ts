@@ -34,16 +34,6 @@ export enum AuthType {
   Apple = 'apple'
 }
 
-export enum ChangeType {
-  Add = 'add',
-  Remove = 'remove'
-}
-
-export type ChangeUserInWorkspaceInput = {
-  id?: Maybe<Scalars['String']>;
-  changeType?: Maybe<ChangeType>;
-};
-
 
 
 
@@ -67,7 +57,6 @@ export type Mutation = {
   createWorkspace: Workspace;
   updateWorkspace: Workspace;
   deleteWorkspace?: Maybe<Workspace>;
-  changeUserOfWorkspace?: Maybe<Workspace>;
 };
 
 
@@ -79,7 +68,7 @@ export type MutationCreateNotificationArgs = {
 
 
 export type MutationDeleteNotificationArgs = {
-  id: Scalars['Int'];
+  token: Scalars['String'];
 };
 
 
@@ -165,19 +154,12 @@ export type MutationDeleteWorkspaceArgs = {
   id: Scalars['String'];
 };
 
-
-export type MutationChangeUserOfWorkspaceArgs = {
-  id: Scalars['String'];
-  users?: Maybe<Array<ChangeUserInWorkspaceInput>>;
-};
-
 export type Notification = {
   __typename?: 'Notification';
   id: Scalars['Int'];
   token: Scalars['String'];
   device?: Maybe<Scalars['String']>;
   os?: Maybe<Scalars['String']>;
-  user: User;
   createdAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -192,8 +174,7 @@ export type Permission = {
   customer?: Maybe<PermissionType>;
   inventory?: Maybe<PermissionType>;
   sales?: Maybe<PermissionType>;
-  user: User;
-  workspace: Workspace;
+  user?: Maybe<User>;
 };
 
 export type PermissionCreateInput = {
@@ -232,6 +213,7 @@ export type PermissionUpdateInput = {
 
 export type Profile = {
   __typename?: 'Profile';
+  userId: Scalars['String'];
   socialId?: Maybe<Scalars['String']>;
   authType?: Maybe<AuthType>;
 };
@@ -249,7 +231,7 @@ export type Query = {
 
 
 export type QueryNotificationsArgs = {
-  userId?: Maybe<Scalars['String']>;
+  userId: Scalars['String'];
 };
 
 
@@ -302,7 +284,6 @@ export type User = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
   profile?: Maybe<Profile>;
-  permissions?: Maybe<Array<Permission>>;
   workspaces?: Maybe<Array<Workspace>>;
   notifications?: Maybe<Array<Notification>>;
 };
@@ -341,7 +322,9 @@ export type Workspace = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
-  users?: Maybe<Array<User>>;
+  /** This field helps to see what is permitted to user on current workspace */
+  permission?: Maybe<Permission>;
+  /** This field is available only if user of the Workspace is admin */
   permissions?: Maybe<Array<Permission>>;
 };
 

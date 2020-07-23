@@ -12,16 +12,6 @@ enum AuthType {
   apple
 }
 
-enum changeType {
-  add
-  remove
-}
-
-input changeUserInWorkspaceInput {
-  id: String
-  changeType: changeType
-}
-
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format
 outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -35,7 +25,7 @@ scalar Gender
 
 type Mutation {
   createNotification(token: String!, device: String, os: String): Notification!
-  deleteNotification(id: Int!): Notification
+  deleteNotification(token: String!): Notification
   createPermission(permission: PermissionCreateInput): Permission!
   updatePermission(permission: PermissionUpdateInput): Permission!
   deletePermission(id: Int!): Permission
@@ -52,7 +42,6 @@ type Mutation {
   createWorkspace(workspace: WorkspaceCreateInput): Workspace!
   updateWorkspace(workspace: WorkspaceUpdateInput): Workspace!
   deleteWorkspace(id: String!): Workspace
-  changeUserOfWorkspace(id: String!, users: [changeUserInWorkspaceInput!]): Workspace
 }
 
 type Notification {
@@ -60,7 +49,6 @@ type Notification {
   token: String!
   device: String
   os: String
-  user: User!
   createdAt: DateTime
 }
 
@@ -74,8 +62,7 @@ type Permission {
   customer: PermissionType
   inventory: PermissionType
   sales: PermissionType
-  user: User!
-  workspace: Workspace!
+  user: User
 }
 
 input PermissionCreateInput {
@@ -113,12 +100,13 @@ input PermissionUpdateInput {
 }
 
 type Profile {
+  userId: String!
   socialId: String
   authType: AuthType
 }
 
 type Query {
-  notifications(userId: String): [Notification!]
+  notifications(userId: String!): [Notification!]
   permission(id: Int): Permission
   permissions: [Permission!]
   me: User
@@ -152,7 +140,6 @@ type User {
   updatedAt: DateTime
   deletedAt: DateTime
   profile: Profile
-  permissions: [Permission!]
   workspaces: [Workspace!]
   notifications: [Notification!]
 }
@@ -190,7 +177,11 @@ type Workspace {
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
-  users: [User!]
+
+  """This field helps to see what is permitted to user on current workspace"""
+  permission: Permission
+
+  """This field is available only if user of the Workspace is admin"""
   permissions: [Permission!]
 }
 

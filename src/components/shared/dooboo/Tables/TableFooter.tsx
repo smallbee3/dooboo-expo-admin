@@ -1,5 +1,6 @@
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { ReactElement, useContext, useRef, useState } from 'react';
 import { Text, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { UserDispatch } from '../../../screen/Main/User';
 
 import { Button } from 'dooboo-ui';
 import styled from 'styled-components/native';
@@ -7,8 +8,6 @@ import styled from 'styled-components/native';
 type Props = React.ComponentPropsWithRef<typeof View> & {
   children: React.ReactNode;
   FooterStyle?: ViewStyle;
-  pageInfo?: any;
-  pageQuery?: any;
 };
 
 const FooterContainer = styled.View`
@@ -38,34 +37,36 @@ const Interpuncts = styled.Image`
 `;
 
 function TableFooter(props: Props): ReactElement {
-  const { children, FooterStyle, pageInfo, pageQuery } = props;
-  // const [currentPage, setCurrentPage] = useState(null);
-  // const [previousPage, setPreviousPage] = useState(null);
-  // const [nextPage, setNextPage] = useState(null);
-
+  const { children, FooterStyle } = props;
   const currentPage = useRef(null);
   const previousPage = useRef(null);
   const nextPage = useRef(null);
 
-  pageInfo.around.map((item, index, arr) => {
+  const { queryArgs, setQueryArgs, pageCursors } = useContext(UserDispatch);
+
+  pageCursors.around.map((item, index, arr) => {
     if (item.isCurrent) {
-      // setCurrentPage(item);
       currentPage.current = item;
-      if (pageInfo.previous) {
-        // setPreviousPage(arr[index - 1]);
+      if (pageCursors.previous) {
         previousPage.current = arr[index - 1];
       }
-      if (pageInfo.next) {
-        // setNextPage(arr[index + 1]);
+      if (pageCursors.next) {
         nextPage.current = arr[index + 1];
       }
     }
   });
+
   return (
     <FooterContainer style={[FooterStyle]} testID="table-header-test-id">
       <Pagination>
         <TouchableOpacity
-          onPress={() => console.log('go left')}
+          onPress={() =>
+            setQueryArgs({
+              ...queryArgs,
+              cursor: previousPage.current.cursor,
+              currentPage: previousPage.current.page,
+            })
+          }
           style={{
             justifyContent: 'center',
             alignItems: 'center',
@@ -79,18 +80,32 @@ function TableFooter(props: Props): ReactElement {
         >
           <ArrowMark source={require('./__assets__/arrow-left.png')} />
         </TouchableOpacity>
-        {pageInfo?.first && (
+        {pageCursors?.first && (
           <>
             <TouchableOpacity
+              onPress={() =>
+                setQueryArgs({
+                  ...queryArgs,
+                  cursor: pageCursors.first.cursor,
+                  currentPage: pageCursors.first.page,
+                })
+              }
               style={{ fontSize: '12px'}}>
-              {pageInfo.first.page}
+              {pageCursors.first.page}
             </TouchableOpacity>
             <Interpuncts source={require('./__assets__/interpuncts.png')} />
           </>
         )}
-        {pageInfo.around.map((item, index) => {
+        {pageCursors.around.map((item, index) => {
           return (
             <TouchableOpacity
+              onPress={() =>
+                setQueryArgs({
+                  ...queryArgs,
+                  cursor: item.cursor,
+                  currentPage: item.page,
+                })
+              }
               key={index}
               style={{
                 fontSize: '12px',
@@ -101,22 +116,30 @@ function TableFooter(props: Props): ReactElement {
             </TouchableOpacity>
           );
         })}
-        {pageInfo?.last && (
+        {pageCursors?.last && (
           <>
             <Interpuncts source={require('./__assets__/interpuncts.png')} />
             <TouchableOpacity
+              onPress={() =>
+                setQueryArgs({
+                  ...queryArgs,
+                  cursor: pageCursors.last.cursor,
+                  currentPage: pageCursors.last.page,
+                })
+              }
               style={{ fontSize: '12px'}}>
-              {pageInfo.last.page}
+              {pageCursors.last.page}
             </TouchableOpacity>
           </>
-        )}        
+        )}
         <TouchableOpacity
-          // onPress={() => pageQuery({
-          //   size: 2,
-          //   buttonNum: 5,
-          //   current: nextPage,
-          //   cursor: nextPage.cursor,
-          // })}
+          onPress={() =>
+            setQueryArgs({
+              ...queryArgs,
+              cursor: nextPage.current.cursor,
+              currentPage: nextPage.current.page,
+            })
+          }
           style={{
             justifyContent: 'center',
             alignItems: 'center',

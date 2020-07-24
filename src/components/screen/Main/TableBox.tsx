@@ -1,6 +1,6 @@
-import React, { ReactElement, useRef, useState } from 'react';
-import { PaginationUserConnection } from '../../../types/graphql';
+import React, { ReactElement, useContext } from 'react';
 import Table from '../../shared/dooboo/Tables/index';
+import { UserDispatch } from './User';
 import styled from 'styled-components/native';
 
 const TableWrapper = styled.View`
@@ -9,15 +9,11 @@ const TableWrapper = styled.View`
   margin-right: 20px;
 `;
 
-export default function TableBox({
-  tableData,
-  pageQuery,
-}): ReactElement {
-  const tableItems = tableData?.pageEdges.map((item) => {
+export default function TableBox(): ReactElement {
+  const { pageEdges } = useContext(UserDispatch);
+  const tableItems = pageEdges.map((item) => {
     return item.node;
   });
-
-  const pageInfo = tableData?.pageCursors;
 
   // const customGroupData = [
   //   'ID',
@@ -39,8 +35,6 @@ export default function TableBox({
           // customGroup={customGroupData}
           isCheckAble={true}
           data={tableItems}
-          pageInfo={pageInfo}
-          pageQuery={pageQuery}
           style={{
             borderRadius: 25,
           }}

@@ -13,15 +13,15 @@ export type UsersQueryResponse = {
         readonly pageEdges: ReadonlyArray<{
             readonly cursor: string;
             readonly node: {
-                readonly id: string;
-                readonly email: string | null;
                 readonly name: string | null;
+                readonly email: string | null;
                 readonly nickname: string | null;
                 readonly gender: unknown | null;
                 readonly phone: string | null;
                 readonly verified: boolean | null;
                 readonly lastSignedIn: unknown | null;
                 readonly createdAt: unknown | null;
+                readonly deletedAt: unknown | null;
             } | null;
         }> | null;
         readonly pageCursors: {
@@ -71,15 +71,15 @@ query UsersQuery(
     pageEdges {
       cursor
       node {
-        id
-        email
         name
+        email
         nickname
         gender
         phone
         verified
         lastSignedIn
         createdAt
+        deletedAt
       }
     }
     pageCursors {
@@ -209,7 +209,7 @@ v6 = [
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
-                "name": "id",
+                "name": "name",
                 "storageKey": null
               },
               {
@@ -217,13 +217,6 @@ v6 = [
                 "args": null,
                 "kind": "ScalarField",
                 "name": "email",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "name",
                 "storageKey": null
               },
               {
@@ -266,6 +259,13 @@ v6 = [
                 "args": null,
                 "kind": "ScalarField",
                 "name": "createdAt",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "deletedAt",
                 "storageKey": null
               }
             ],
@@ -367,14 +367,14 @@ return {
     "selections": (v6/*: any*/)
   },
   "params": {
-    "cacheID": "528f6c006ed7c88cc64b05ca2be5d884",
+    "cacheID": "abddcc73465698a9d1714422aa800216",
     "id": null,
     "metadata": {},
     "name": "UsersQuery",
     "operationKind": "query",
-    "text": "query UsersQuery(\n  $size: Int!\n  $buttonNum: Int!\n  $currentPage: Int\n  $cursor: String\n) {\n  users(size: $size, buttonNum: $buttonNum, currentPage: $currentPage, cursor: $cursor) {\n    pageEdges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        gender\n        phone\n        verified\n        lastSignedIn\n        createdAt\n      }\n    }\n    pageCursors {\n      first {\n        cursor\n        page\n        isCurrent\n      }\n      previous {\n        cursor\n        page\n        isCurrent\n      }\n      around {\n        cursor\n        page\n        isCurrent\n      }\n      next {\n        cursor\n        page\n        isCurrent\n      }\n      last {\n        cursor\n        page\n        isCurrent\n      }\n    }\n  }\n}\n"
+    "text": "query UsersQuery(\n  $size: Int!\n  $buttonNum: Int!\n  $currentPage: Int\n  $cursor: String\n) {\n  users(size: $size, buttonNum: $buttonNum, currentPage: $currentPage, cursor: $cursor) {\n    pageEdges {\n      cursor\n      node {\n        name\n        email\n        nickname\n        gender\n        phone\n        verified\n        lastSignedIn\n        createdAt\n        deletedAt\n      }\n    }\n    pageCursors {\n      first {\n        cursor\n        page\n        isCurrent\n      }\n      previous {\n        cursor\n        page\n        isCurrent\n      }\n      around {\n        cursor\n        page\n        isCurrent\n      }\n      next {\n        cursor\n        page\n        isCurrent\n      }\n      last {\n        cursor\n        page\n        isCurrent\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '3f91c7507b232f61d28dc6da296ed4d4';
+(node as any).hash = '5a3d09685b46a45addf6d85db1956231';
 export default node;

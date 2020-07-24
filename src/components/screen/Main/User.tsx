@@ -1,12 +1,17 @@
-import { Animated, ImageSourcePropType } from 'react-native';
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, {
+  useRef,
+  useState,
+} from 'react';
 import {
   UsersQuery,
   UsersQueryResponse,
 } from '../../../__generated__/UsersQuery.graphql';
+import {
+  graphql,
+  useLazyLoadQuery,
+} from 'react-relay/hooks';
+import { Animated } from 'react-native';
 
-import { graphql, useQuery } from 'relay-hooks';
-import { Button } from 'dooboo-ui';
 import SearchInputBox from './SearchInputBox';
 import TableBox from './TableBox';
 import { getString } from '../../../../STRINGS';
@@ -48,15 +53,15 @@ const usersQuery = graphql`
       pageEdges {
         cursor
         node {
-          id
-          email
           name
+          email
           nickname
           gender
           phone
           verified
           lastSignedIn
           createdAt
+          deletedAt
         }
       }
       pageCursors {
@@ -90,48 +95,62 @@ const usersQuery = graphql`
   }
 `;
 
-function useUsersQuery({
-  size,
-  buttonNum,
-  currentPage,
-  cursor,
-}: {
-  size: number;
-  buttonNum: number;
-  currentPage?: number;
-  cursor?: string;
-}): any[] {
-  const { props, error, retry, cached } = useQuery<UsersQuery>(usersQuery, {
-    size,
-    buttonNum,
-    currentPage,
-    cursor,
-  });
+type contextState = {
+  queryArgs: any,
+  setQueryArgs: any,
+  pageEdges: any,
+  pageCursors: any,
+};
 
-  return [props, error, retry, cached];
-}
+export const UserDispatch = React.createContext<contextState>({
+  queryArgs: null,
+  setQueryArgs: null,
+  pageEdges: null,
+  pageCursors: null,
+});
 
 const User: React.FC = () => {
   const [toggle, setToggle] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const { theme } = useThemeContext();
   const navigation = useNavigation();
-  // const [result, setResult] = useState(null);
-
-  const [props, error, retry, cached] = useUsersQuery({
+  const [queryArgs, setQueryArgs] = useState({
     size: 5,
-    buttonNum: 5,
+    buttonNum: 7,
+    currentPage: null,
+    cursor: null,
   });
-  // setResult(props);
 
-  // useEffect(() => {
-  //   const [props, error, retry, cached] = useUsersQuery({
-  //     size: 5,
-  //     buttonNum: 5,
-  //   });
-  //   setResult(props);
-  //   console.log(1, { props });
-  // }, []);
+  const useUsersQuery = ({
+    size,
+    buttonNum,
+    currentPage,
+    cursor,
+  }: {
+    size: number;
+    buttonNum: number;
+    currentPage?: number;
+    cursor?: string;
+  }): UsersQueryResponse => {
+    const result = useLazyLoadQuery<UsersQuery>(
+      usersQuery,
+      {
+        size,
+        buttonNum,
+        currentPage,
+        cursor,
+      },
+      { fetchPolicy: 'store-or-network' },
+    );
+    return result;
+  };
+
+  const data = useUsersQuery({
+    size: queryArgs.size,
+    buttonNum: queryArgs.buttonNum,
+    currentPage: queryArgs.currentPage,
+    cursor: queryArgs.cursor,
+  });
 
   const fadeOut = (): void => {
     Animated.timing(fadeAnim, {
@@ -149,17 +168,24 @@ const User: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Wrapper>
-        <Title style={{ margin: 20 }}>회원목록</Title>
+    <UserDispatch.Provider
+      value={{
+        queryArgs,
+        setQueryArgs,
+        pageEdges: data.users.pageEdges,
+        pageCursors: data.users.pageCursors,
+      }}
+    >
+      <Container>
+        <Wrapper>
+          <Title style={{ margin: 20 }}>회원목록</Title>
 
-        <SearchInputBox />
+          <SearchInputBox />
 
-        <TableBox
-          tableData={props?.users}
-          pageQuery={useUsersQuery} />
-      </Wrapper>
-    </Container>
+          {data && <TableBox />}
+        </Wrapper>
+      </Container>
+    </UserDispatch.Provider>
   );
 };
 

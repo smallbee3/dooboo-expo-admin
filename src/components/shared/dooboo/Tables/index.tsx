@@ -14,8 +14,6 @@ import styled from 'styled-components/native';
 export interface Props {
   style?: StyleProp<ViewStyle>;
   data: Array<Record<string, any>>;
-  pageInfo: any;
-  pageQuery: any;
   isCheckAble?: boolean;
   customGroup?: Array<string>;
 }
@@ -42,8 +40,6 @@ const Container = styled.View`
 
 const Table: React.FC<Props> & TableNamespace = ({
   data,
-  pageInfo,
-  pageQuery,
   isCheckAble,
   customGroup,
   style,
@@ -193,10 +189,7 @@ const Table: React.FC<Props> & TableNamespace = ({
                 </Table.Row>
               );
             })}
-            <Table.Footer
-              pageInfo={pageInfo}
-              pageQuery={pageQuery}
-            >
+            <Table.Footer>
             </Table.Footer>
           </TableWrapper>
         </Container>

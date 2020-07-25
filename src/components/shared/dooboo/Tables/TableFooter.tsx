@@ -1,6 +1,6 @@
 import React, { ReactElement, useContext, useRef, useState } from 'react';
 import { Text, TouchableOpacity, View, ViewStyle } from 'react-native';
-import { UserDispatch } from '../../../screen/Main/User';
+import { UserDispatch } from '../../../screen/Main/TableBox';
 
 import { Button } from 'dooboo-ui';
 import styled from 'styled-components/native';

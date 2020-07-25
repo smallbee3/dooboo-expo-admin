@@ -2,13 +2,13 @@
 /* eslint-disable */
 
 import { ConcreteRequest } from "relay-runtime";
-export type UsersQueryVariables = {
+export type TableBoxUsersQueryVariables = {
     size: number;
     buttonNum: number;
     currentPage?: number | null;
     cursor?: string | null;
 };
-export type UsersQueryResponse = {
+export type TableBoxUsersQueryResponse = {
     readonly users: {
         readonly pageEdges: ReadonlyArray<{
             readonly cursor: string;
@@ -53,15 +53,15 @@ export type UsersQueryResponse = {
         } | null;
     } | null;
 };
-export type UsersQuery = {
-    readonly response: UsersQueryResponse;
-    readonly variables: UsersQueryVariables;
+export type TableBoxUsersQuery = {
+    readonly response: TableBoxUsersQueryResponse;
+    readonly variables: TableBoxUsersQueryVariables;
 };
 
 
 
 /*
-query UsersQuery(
+query TableBoxUsersQuery(
   $size: Int!
   $buttonNum: Int!
   $currentPage: Int
@@ -349,7 +349,7 @@ return {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "UsersQuery",
+    "name": "TableBoxUsersQuery",
     "selections": (v6/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -363,18 +363,18 @@ return {
       (v2/*: any*/)
     ],
     "kind": "Operation",
-    "name": "UsersQuery",
+    "name": "TableBoxUsersQuery",
     "selections": (v6/*: any*/)
   },
   "params": {
-    "cacheID": "abddcc73465698a9d1714422aa800216",
+    "cacheID": "a3727a80350f3967c28ba2665f248bab",
     "id": null,
     "metadata": {},
-    "name": "UsersQuery",
+    "name": "TableBoxUsersQuery",
     "operationKind": "query",
-    "text": "query UsersQuery(\n  $size: Int!\n  $buttonNum: Int!\n  $currentPage: Int\n  $cursor: String\n) {\n  users(size: $size, buttonNum: $buttonNum, currentPage: $currentPage, cursor: $cursor) {\n    pageEdges {\n      cursor\n      node {\n        name\n        email\n        nickname\n        gender\n        phone\n        verified\n        lastSignedIn\n        createdAt\n        deletedAt\n      }\n    }\n    pageCursors {\n      first {\n        cursor\n        page\n        isCurrent\n      }\n      previous {\n        cursor\n        page\n        isCurrent\n      }\n      around {\n        cursor\n        page\n        isCurrent\n      }\n      next {\n        cursor\n        page\n        isCurrent\n      }\n      last {\n        cursor\n        page\n        isCurrent\n      }\n    }\n  }\n}\n"
+    "text": "query TableBoxUsersQuery(\n  $size: Int!\n  $buttonNum: Int!\n  $currentPage: Int\n  $cursor: String\n) {\n  users(size: $size, buttonNum: $buttonNum, currentPage: $currentPage, cursor: $cursor) {\n    pageEdges {\n      cursor\n      node {\n        name\n        email\n        nickname\n        gender\n        phone\n        verified\n        lastSignedIn\n        createdAt\n        deletedAt\n      }\n    }\n    pageCursors {\n      first {\n        cursor\n        page\n        isCurrent\n      }\n      previous {\n        cursor\n        page\n        isCurrent\n      }\n      around {\n        cursor\n        page\n        isCurrent\n      }\n      next {\n        cursor\n        page\n        isCurrent\n      }\n      last {\n        cursor\n        page\n        isCurrent\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '5a3d09685b46a45addf6d85db1956231';
+(node as any).hash = '95dd8d959377db0e9818dad40c821709';
 export default node;

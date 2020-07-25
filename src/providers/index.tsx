@@ -1,4 +1,4 @@
-import React, { ReactElement, Suspense } from 'react';
+import React, { ReactElement } from 'react';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
 import { dark, light } from '../theme';
 
@@ -18,7 +18,7 @@ function RelayEnvironmentWrapper({ children }): ReactElement {
   return (
     <RelayEnvironmentProvider environment={environment}>
       <ErrorBoundary fallback={<SuspenseScreen error />}>
-        <Suspense fallback={<SuspenseScreen />}>{children}</Suspense>
+        {children}
       </ErrorBoundary>
     </RelayEnvironmentProvider>
   );

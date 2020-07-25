@@ -49,13 +49,16 @@ function TableFooter(props: Props): ReactElement {
       currentPage.current = item;
       if (pageCursors.previous) {
         previousPage.current = arr[index - 1];
+      } else {
+        previousPage.current = item;
       }
       if (pageCursors.next) {
         nextPage.current = arr[index + 1];
+      } else {
+        nextPage.current = item;
       }
     }
   });
-
   return (
     <FooterContainer style={[FooterStyle]} testID="table-header-test-id">
       <Pagination>

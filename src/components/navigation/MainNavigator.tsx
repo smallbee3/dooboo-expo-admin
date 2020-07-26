@@ -4,6 +4,7 @@ import Intro from '../screen/Main/Intro';
 import MainLayout from './MainLayout';
 import UserNotification from '../screen/Main/UserNotification';
 import UserProfile from '../screen/Main/UserProfile';
+import Users from '../screen/Main/Users';
 import Workspace from '../screen/Main/Workspace';
 import WorkspaceCs from '../screen/Main/WorkspaceCs';
 import WorkspaceDelivery from '../screen/Main/WorkspaceDelivery';
@@ -20,6 +21,7 @@ export type MainStackParamList = {
   Intro: undefined;
   UserProfile: undefined;
   UserNotification: undefined;
+  Users: undefined;
   Workspace: undefined;
   WorkspaceForm: undefined;
   WorkspaceSettings: undefined;
@@ -46,6 +48,7 @@ export default function MainNavigator(): ReactElement {
               <MainStack.Screen name="Intro" component={Intro} />
             </React.Fragment>
             : <React.Fragment>
+              <MainStack.Screen name="Users" component={Users} />
               <MainStack.Screen name="Workspace" component={Workspace} />
               <MainStack.Screen name="WorkspaceCs" component={WorkspaceCs} />
               <MainStack.Screen name="WorkspaceStore" component={WorkspaceStore} />

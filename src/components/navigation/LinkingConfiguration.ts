@@ -25,6 +25,7 @@ export const MainLinking = {
       Root: {
         screens: {
           Intro: '/',
+          Users: '/users',
           UserProfile: '/user/profile',
           UserNotification: '/user/notification',
           Workspace: '/workspaces',

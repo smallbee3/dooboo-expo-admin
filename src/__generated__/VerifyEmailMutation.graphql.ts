@@ -28,7 +28,8 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "email"
+    "name": "email",
+    "type": "String!"
   }
 ],
 v1 = [
@@ -53,8 +54,7 @@ return {
     "metadata": null,
     "name": "VerifyEmailMutation",
     "selections": (v1/*: any*/),
-    "type": "Mutation",
-    "abstractKey": null
+    "type": "Mutation"
   },
   "kind": "Request",
   "operation": {
@@ -64,7 +64,6 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "9fdbf96b198c492e8b7d287e695a0f2a",
     "id": null,
     "metadata": {},
     "name": "VerifyEmailMutation",

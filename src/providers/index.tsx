@@ -1,11 +1,9 @@
-import React, { ReactElement } from 'react';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
 import { dark, light } from '../theme';
 
 import { AppProvider } from './AppProvider';
-import ErrorBoundary from './ErrorBoundary';
+import React from 'react';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
-import SuspenseScreen from '../components/screen/Suspense';
 import environment from '../relay';
 import { useColorScheme } from 'react-native-appearance';
 
@@ -14,23 +12,14 @@ interface Props {
   children?: React.ReactElement;
 }
 
-function RelayEnvironmentWrapper({ children }): ReactElement {
-  return (
-    <RelayEnvironmentProvider environment={environment}>
-      <ErrorBoundary fallback={<SuspenseScreen error />}>
-        {children}
-      </ErrorBoundary>
-    </RelayEnvironmentProvider>
-  );
-}
-
+// Add providers here
 const RootProvider = ({
   initialThemeType = ThemeType.LIGHT,
   children,
 }: Props): React.ReactElement => {
   const colorScheme = useColorScheme();
   return (
-    <RelayEnvironmentWrapper>
+    <RelayEnvironmentProvider environment={environment}>
       <ThemeProvider
         customTheme={{
           light,
@@ -46,7 +35,7 @@ const RootProvider = ({
       >
         <AppProvider>{children}</AppProvider>
       </ThemeProvider>
-    </RelayEnvironmentWrapper>
+    </RelayEnvironmentProvider>
   );
 };
 

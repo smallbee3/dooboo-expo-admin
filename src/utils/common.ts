@@ -1,4 +1,4 @@
-export function validateEmail(email): boolean {
+export function validateEmail(email: string): boolean {
   // eslint-disable-next-line no-useless-escape
   const regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
   return regExp.test(email);

@@ -38,12 +38,14 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "email"
+    "name": "email",
+    "type": "String!"
   },
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "password"
+    "name": "password",
+    "type": "String!"
   }
 ],
 v1 = [
@@ -104,8 +106,7 @@ return {
     "metadata": null,
     "name": "SignUpMutation",
     "selections": (v1/*: any*/),
-    "type": "Mutation",
-    "abstractKey": null
+    "type": "Mutation"
   },
   "kind": "Request",
   "operation": {
@@ -115,7 +116,6 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "0315d4bfc3c8f5fae390bd1ce40037fa",
     "id": null,
     "metadata": {},
     "name": "SignUpMutation",

@@ -17,7 +17,7 @@ const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({ theme }): string => theme.whiteBackground};
 `;
 
 const ContentWrapper = styled.View`
@@ -28,10 +28,9 @@ const Title = styled.Text`
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
+  font-weight: bold;
   line-height: 53px;
-
   color: ${({ theme }): string => theme.font};
-
   width: 100%;
   text-align: center;
   margin-bottom: 80px;

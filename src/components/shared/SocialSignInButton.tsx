@@ -57,7 +57,7 @@ const SocialSignInButton: FC<Props> = ({
       : {
         clientId,
         clientSecret,
-        scopes: ['public_profile, email'],z
+        scopes: ['public_profile, email'],
         redirectUri,
         prompt: Prompt.SelectAccount,
         extraParams: {

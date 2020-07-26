@@ -20,7 +20,7 @@ const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({ theme }): string => theme.whiteBackground};
 `;
 
 const ContentWrapper = styled.View`
@@ -32,9 +32,7 @@ const Title = styled.Text`
   font-weight: bold;
   font-size: 36px;
   line-height: 53px;
-
   color: ${({ theme }): string => theme.font};
-
   width: 100%;
   text-align: center;
   margin-bottom: 18px;
@@ -45,11 +43,9 @@ const SubTitle = styled.Text`
   font-weight: normal;
   font-size: 24px;
   line-height: 36px;
-
   align-items: center;
   text-align: center;
   margin-bottom: 59px;
-
   color: ${({ theme }): string => theme.font};
 `;
 

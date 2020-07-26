@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({ theme }): string => theme.whiteBackground};
   flex: 1;
   align-items: center;
   justify-content: center;

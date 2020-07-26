@@ -28,7 +28,8 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "email"
+    "name": "email",
+    "type": "String!"
   }
 ],
 v1 = [
@@ -53,8 +54,7 @@ return {
     "metadata": null,
     "name": "FindPasswordMutation",
     "selections": (v1/*: any*/),
-    "type": "Mutation",
-    "abstractKey": null
+    "type": "Mutation"
   },
   "kind": "Request",
   "operation": {
@@ -64,7 +64,6 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "4e7d4db3236e77db21319bd292744e2e",
     "id": null,
     "metadata": {},
     "name": "FindPasswordMutation",

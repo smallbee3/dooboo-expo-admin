@@ -18,7 +18,7 @@ import { useThemeContext } from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({ theme }): string => theme.whiteBackground};
   flex-direction: column;
   align-items: center;
   justify-content: center;

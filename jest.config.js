@@ -16,6 +16,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'ts', 'tsx', 'svg', 'png'],
   globals: {
     'ts-jest': {
+      babelConfig: true,
       tsConfig: {
         jsx: 'react',
       },
@@ -39,7 +40,7 @@ module.exports = {
   ],
   /* eslint-disable */
   transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules-*|sentry-expo|native-base|@dooboo-ui)',
+    'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules-*|sentry-expo|native-base|dooboo-ui|@dooboo-ui)',
   ],
   cacheDirectory: '.jest/cache',
   /* eslint-enable */

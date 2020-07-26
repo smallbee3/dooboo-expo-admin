@@ -12,6 +12,12 @@ enum AuthType {
   apple
 }
 
+type cursorUserConnection {
+  cursor: String!
+  page: Int!
+  isCurrent: Boolean!
+}
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format
 outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -24,6 +30,12 @@ scalar DateTime
 scalar Gender
 
 type Mutation {
+  createNotification(token: String!, device: String, os: String): Notification!
+  deleteNotification(token: String!): Notification
+  createPermission(permission: PermissionCreateInput): Permission!
+  updatePermission(permission: PermissionUpdateInput): Permission!
+  deletePermission(id: Int!): Permission
+  singleUpload(file: Upload, dir: String): String
   signUp(user: UserCreateInput): User!
   signInEmail(email: String!, password: String!): AuthPayload!
   sendVerification(email: String!): Boolean!
@@ -32,9 +44,10 @@ type Mutation {
   changeEmailPassword(password: String!, newPassword: String!): Boolean!
   signInWithFacebook(accessToken: String!): AuthPayload!
   signInWithGoogle(accessToken: String!): AuthPayload!
-  createNotification(token: String!, device: String, os: String): Notification!
-  deleteNotification(id: Int!): Notification
-  singleUpload(file: Upload, dir: String): String
+  deleteUser(id: String!): User!
+  createWorkspace(workspace: WorkspaceCreateInput): Workspace!
+  updateWorkspace(workspace: WorkspaceUpdateInput): Workspace!
+  deleteWorkspace(id: String!): Workspace
 }
 
 type Notification {
@@ -42,8 +55,25 @@ type Notification {
   token: String!
   device: String
   os: String
-  user: User!
   createdAt: DateTime
+}
+
+type pageCursorsUserConnection {
+  first: cursorUserConnection
+  previous: cursorUserConnection
+  around: [cursorUserConnection!]
+  next: cursorUserConnection
+  last: cursorUserConnection
+}
+
+type pageEdgesUserConnection {
+  cursor: String!
+  node: User
+}
+
+type paginationUserConnection {
+  pageEdges: [pageEdgesUserConnection!]
+  pageCursors: pageCursorsUserConnection
 }
 
 type Permission {
@@ -56,23 +86,58 @@ type Permission {
   customer: PermissionType
   inventory: PermissionType
   sales: PermissionType
-  user: User!
-  workspace: Workspace!
+  user: User
+}
+
+input PermissionCreateInput {
+  isAdmin: Boolean
+  basicInfo: PermissionType
+  product: PermissionType
+  order: PermissionType
+  delivery: PermissionType
+  customer: PermissionType
+  inventory: PermissionType
+  sales: PermissionType
+  userId: String
+  workspaceId: String
 }
 
 enum PermissionType {
+  none
   read
   write
+  admin
+}
+
+input PermissionUpdateInput {
+  id: Int
+  isAdmin: Boolean
+  basicInfo: PermissionType
+  product: PermissionType
+  order: PermissionType
+  delivery: PermissionType
+  customer: PermissionType
+  inventory: PermissionType
+  sales: PermissionType
+  userId: String
+  workspaceId: String
 }
 
 type Profile {
+  userId: String!
   socialId: String
   authType: AuthType
 }
 
 type Query {
-  me: User!
-  notifications(userId: String): [Notification!]
+  notifications(userId: String!): [Notification!]
+  permission(id: Int): Permission
+  permissions: [Permission!]
+  me: User
+  user(id: String): User
+  users(currentPage: Int, cursor: String, size: Int, buttonNum: Int, orderBy: String, orderDirection: String = "desc", whereArgs: String): paginationUserConnection
+  workspace(id: String): Workspace
+  workspaces: [Workspace!]
 }
 
 type Subscription {
@@ -100,7 +165,6 @@ type User {
   updatedAt: DateTime
   deletedAt: DateTime
   profile: Profile
-  permissions: [Permission!]
   workspaces: [Workspace!]
   notifications: [Notification!]
 }
@@ -135,10 +199,35 @@ type Workspace {
   zipCode: String!
   address: String!
   fax: String
-  permissions: [Permission!]
-  users: [User!]
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
+
+  """This field helps to see what is permitted to user on current workspace"""
+  permission: Permission
+
+  """This field is available only if user of the Workspace is admin"""
+  permissions: [Permission!]
+}
+
+input WorkspaceCreateInput {
+  organization: String!
+  representativeName: String!
+  registrationNumber: String!
+  registrationPhotoURL: String!
+  zipCode: String!
+  address: String!
+  fax: String
+}
+
+input WorkspaceUpdateInput {
+  id: String
+  organization: String
+  representativeName: String
+  registrationNumber: String
+  registrationPhotoURL: String
+  zipCode: String
+  address: String
+  fax: String
 }
 

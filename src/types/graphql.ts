@@ -20,6 +20,7 @@ export type Scalars = {
   Upload: any;
 };
 
+
 export type AuthPayload = {
   __typename?: 'AuthPayload';
   token: Scalars['String'];
@@ -33,8 +34,24 @@ export enum AuthType {
   Apple = 'apple'
 }
 
+export type CursorUserConnection = {
+  __typename?: 'cursorUserConnection';
+  cursor: Scalars['String'];
+  page: Scalars['Int'];
+  isCurrent: Scalars['Boolean'];
+};
+
+
+
+
 export type Mutation = {
   __typename?: 'Mutation';
+  createNotification: Notification;
+  deleteNotification?: Maybe<Notification>;
+  createPermission: Permission;
+  updatePermission: Permission;
+  deletePermission?: Maybe<Permission>;
+  singleUpload?: Maybe<Scalars['String']>;
   signUp: User;
   signInEmail: AuthPayload;
   sendVerification: Scalars['Boolean'];
@@ -43,44 +60,12 @@ export type Mutation = {
   changeEmailPassword: Scalars['Boolean'];
   signInWithFacebook: AuthPayload;
   signInWithGoogle: AuthPayload;
-  createNotification: Notification;
-  deleteNotification?: Maybe<Notification>;
-  singleUpload?: Maybe<Scalars['String']>;
+  deleteUser: User;
+  createWorkspace: Workspace;
+  updateWorkspace: Workspace;
+  deleteWorkspace?: Maybe<Workspace>;
 };
 
-export type MutationSignUpArgs = {
-  user?: Maybe<UserCreateInput>;
-};
-
-export type MutationSignInEmailArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
-};
-
-export type MutationSendVerificationArgs = {
-  email: Scalars['String'];
-};
-
-export type MutationUpdateProfileArgs = {
-  user?: Maybe<UserUpdateInput>;
-};
-
-export type MutationFindPasswordArgs = {
-  email: Scalars['String'];
-};
-
-export type MutationChangeEmailPasswordArgs = {
-  password: Scalars['String'];
-  newPassword: Scalars['String'];
-};
-
-export type MutationSignInWithFacebookArgs = {
-  accessToken: Scalars['String'];
-};
-
-export type MutationSignInWithGoogleArgs = {
-  accessToken: Scalars['String'];
-};
 
 export type MutationCreateNotificationArgs = {
   token: Scalars['String'];
@@ -88,13 +73,92 @@ export type MutationCreateNotificationArgs = {
   os?: Maybe<Scalars['String']>;
 };
 
+
 export type MutationDeleteNotificationArgs = {
+  token: Scalars['String'];
+};
+
+
+export type MutationCreatePermissionArgs = {
+  permission?: Maybe<PermissionCreateInput>;
+};
+
+
+export type MutationUpdatePermissionArgs = {
+  permission?: Maybe<PermissionUpdateInput>;
+};
+
+
+export type MutationDeletePermissionArgs = {
   id: Scalars['Int'];
 };
+
 
 export type MutationSingleUploadArgs = {
   file?: Maybe<Scalars['Upload']>;
   dir?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationSignUpArgs = {
+  user?: Maybe<UserCreateInput>;
+};
+
+
+export type MutationSignInEmailArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+
+export type MutationSendVerificationArgs = {
+  email: Scalars['String'];
+};
+
+
+export type MutationUpdateProfileArgs = {
+  user?: Maybe<UserUpdateInput>;
+};
+
+
+export type MutationFindPasswordArgs = {
+  email: Scalars['String'];
+};
+
+
+export type MutationChangeEmailPasswordArgs = {
+  password: Scalars['String'];
+  newPassword: Scalars['String'];
+};
+
+
+export type MutationSignInWithFacebookArgs = {
+  accessToken: Scalars['String'];
+};
+
+
+export type MutationSignInWithGoogleArgs = {
+  accessToken: Scalars['String'];
+};
+
+
+export type MutationDeleteUserArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationCreateWorkspaceArgs = {
+  workspace?: Maybe<WorkspaceCreateInput>;
+};
+
+
+export type MutationUpdateWorkspaceArgs = {
+  workspace?: Maybe<WorkspaceUpdateInput>;
+};
+
+
+export type MutationDeleteWorkspaceArgs = {
+  id: Scalars['String'];
 };
 
 export type Notification = {
@@ -103,8 +167,28 @@ export type Notification = {
   token: Scalars['String'];
   device?: Maybe<Scalars['String']>;
   os?: Maybe<Scalars['String']>;
-  user: User;
   createdAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PageCursorsUserConnection = {
+  __typename?: 'pageCursorsUserConnection';
+  first?: Maybe<CursorUserConnection>;
+  previous?: Maybe<CursorUserConnection>;
+  around?: Maybe<Array<CursorUserConnection>>;
+  next?: Maybe<CursorUserConnection>;
+  last?: Maybe<CursorUserConnection>;
+};
+
+export type PageEdgesUserConnection = {
+  __typename?: 'pageEdgesUserConnection';
+  cursor: Scalars['String'];
+  node?: Maybe<User>;
+};
+
+export type PaginationUserConnection = {
+  __typename?: 'paginationUserConnection';
+  pageEdges?: Maybe<Array<PageEdgesUserConnection>>;
+  pageCursors?: Maybe<PageCursorsUserConnection>;
 };
 
 export type Permission = {
@@ -118,29 +202,91 @@ export type Permission = {
   customer?: Maybe<PermissionType>;
   inventory?: Maybe<PermissionType>;
   sales?: Maybe<PermissionType>;
-  user: User;
-  workspace: Workspace;
+  user?: Maybe<User>;
+};
+
+export type PermissionCreateInput = {
+  isAdmin?: Maybe<Scalars['Boolean']>;
+  basicInfo?: Maybe<PermissionType>;
+  product?: Maybe<PermissionType>;
+  order?: Maybe<PermissionType>;
+  delivery?: Maybe<PermissionType>;
+  customer?: Maybe<PermissionType>;
+  inventory?: Maybe<PermissionType>;
+  sales?: Maybe<PermissionType>;
+  userId?: Maybe<Scalars['String']>;
+  workspaceId?: Maybe<Scalars['String']>;
 };
 
 export enum PermissionType {
+  None = 'none',
   Read = 'read',
-  Write = 'write'
+  Write = 'write',
+  Admin = 'admin'
 }
+
+export type PermissionUpdateInput = {
+  id?: Maybe<Scalars['Int']>;
+  isAdmin?: Maybe<Scalars['Boolean']>;
+  basicInfo?: Maybe<PermissionType>;
+  product?: Maybe<PermissionType>;
+  order?: Maybe<PermissionType>;
+  delivery?: Maybe<PermissionType>;
+  customer?: Maybe<PermissionType>;
+  inventory?: Maybe<PermissionType>;
+  sales?: Maybe<PermissionType>;
+  userId?: Maybe<Scalars['String']>;
+  workspaceId?: Maybe<Scalars['String']>;
+};
 
 export type Profile = {
   __typename?: 'Profile';
+  userId: Scalars['String'];
   socialId?: Maybe<Scalars['String']>;
   authType?: Maybe<AuthType>;
 };
 
 export type Query = {
   __typename?: 'Query';
-  me: User;
   notifications?: Maybe<Array<Notification>>;
+  permission?: Maybe<Permission>;
+  permissions?: Maybe<Array<Permission>>;
+  me?: Maybe<User>;
+  user?: Maybe<User>;
+  users?: Maybe<PaginationUserConnection>;
+  workspace?: Maybe<Workspace>;
+  workspaces?: Maybe<Array<Workspace>>;
 };
 
+
 export type QueryNotificationsArgs = {
-  userId?: Maybe<Scalars['String']>;
+  userId: Scalars['String'];
+};
+
+
+export type QueryPermissionArgs = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryUserArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryUsersArgs = {
+  currentPage?: Maybe<Scalars['Int']>;
+  cursor?: Maybe<Scalars['String']>;
+  size?: Maybe<Scalars['Int']>;
+  buttonNum?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Scalars['String']>;
+  orderDirection?: Maybe<Scalars['String']>;
+  whereArgs?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryWorkspaceArgs = {
+  id?: Maybe<Scalars['String']>;
 };
 
 export type Subscription = {
@@ -149,13 +295,16 @@ export type Subscription = {
   userUpdated: User;
 };
 
+
 export type SubscriptionUserSignedInArgs = {
   userId: Scalars['String'];
 };
 
+
 export type SubscriptionUserUpdatedArgs = {
   userId: Scalars['String'];
 };
+
 
 export type User = {
   __typename?: 'User';
@@ -175,7 +324,6 @@ export type User = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
   profile?: Maybe<Profile>;
-  permissions?: Maybe<Array<Permission>>;
   workspaces?: Maybe<Array<Workspace>>;
   notifications?: Maybe<Array<Notification>>;
 };
@@ -211,9 +359,32 @@ export type Workspace = {
   zipCode: Scalars['String'];
   address: Scalars['String'];
   fax?: Maybe<Scalars['String']>;
-  permissions?: Maybe<Array<Permission>>;
-  users?: Maybe<Array<User>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
+  /** This field helps to see what is permitted to user on current workspace */
+  permission?: Maybe<Permission>;
+  /** This field is available only if user of the Workspace is admin */
+  permissions?: Maybe<Array<Permission>>;
+};
+
+export type WorkspaceCreateInput = {
+  organization: Scalars['String'];
+  representativeName: Scalars['String'];
+  registrationNumber: Scalars['String'];
+  registrationPhotoURL: Scalars['String'];
+  zipCode: Scalars['String'];
+  address: Scalars['String'];
+  fax?: Maybe<Scalars['String']>;
+};
+
+export type WorkspaceUpdateInput = {
+  id?: Maybe<Scalars['String']>;
+  organization?: Maybe<Scalars['String']>;
+  representativeName?: Maybe<Scalars['String']>;
+  registrationNumber?: Maybe<Scalars['String']>;
+  registrationPhotoURL?: Maybe<Scalars['String']>;
+  zipCode?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
+  fax?: Maybe<Scalars['String']>;
 };

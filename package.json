@@ -1,5 +1,5 @@
 {
-  "name": "prime",
+  "name": "dooboo-expo-admin",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "build": "rm -rf ./dist && tsc",
@@ -17,13 +17,15 @@
     "relay": "yarn run relay-compiler --schema src/relay/schema.graphql --src ./src/ --extensions ts tsx --language typescript --artifactDirectory ./src/__generated__ --watchman false $@",
     "relay-watch": "yarn run relay-compiler --schema src/relay/schema.graphql --src ./src/ --extensions ts tsx --language typescript --artifactDirectory ./src/__generated__ --watch",
     "schema": "get-graphql-schema https://primedev.azurewebsites.net/graphql > src/relay/schema.graphql",
+    "schema:local": "get-graphql-schema http://localhost:5000/graphql > src/relay/schema.graphql",
     "codegen": "graphql-codegen --config codegen.yml",
-    "generate": "yarn schema && yarn codegen"
+    "generate": "yarn schema && yarn codegen",
+    "generate:local": "yarn schema:local && yarn codegen"
   },
   "private": true,
   "version": "0.0.0",
   "description": "Expo starter from dooboo-cli.",
-  "author": "hyochan <dooboolab@gmail.com>",
+  "author": "Clark <clark@dooboolab.com>",
   "license": "MIT",
   "dependencies": {
     "@dooboo-ui/theme": "^0.0.1",

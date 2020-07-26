@@ -17,6 +17,7 @@ import svgStar from '../../assets/svgs/star.svg';
 import svgTruck from '../../assets/svgs/truck.svg';
 import svgUploadFile from '../../assets/svgs/upload-file-kor.svg';
 import svgUsers from '../../assets/svgs/users.svg';
+import svgMagnifier from '../../assets/svgs/magnifier.svg';
 
 export const SvgHamburgerMenu = svgHamburgerMenu;
 export const SvgFacebook = svgFacebook;
@@ -33,6 +34,7 @@ export const SvgStar = svgStar;
 export const SvgTruck = svgTruck;
 export const SvgUsers = svgUsers;
 export const SvgBottomArrow = svgBottomArrow;
+export const SvgMagnifier = svgMagnifier;
 
 export const IC_INTRO_BACKGROUND = icIntroBackground;
 export const IC_CHECKBOX_MARK = icCheckboxMark;

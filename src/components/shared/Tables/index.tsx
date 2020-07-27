@@ -154,7 +154,7 @@ const Table: React.FC<Props> & TableNamespace = ({
         </View>
         <TableWrapper>
           <Table.Header headerStyle={{ backgroundColor: 'white' }}>
-            <Table.Title isCheckAble={!isCheckAble} />
+            <Table.Title isShort={!isCheckAble} />
 
             {/** have a customGroup or undefined  */}
             {(customGroup || group)?.map((field: any, index: number) => {
@@ -162,7 +162,7 @@ const Table: React.FC<Props> & TableNamespace = ({
                 <Table.Title
                   numberOfLines={1}
                   key={`${field}-${index}`}
-                  isCheckAble={index === 0}
+                  isShort={index === 0}
                 >
                   {field}
                 </Table.Title>

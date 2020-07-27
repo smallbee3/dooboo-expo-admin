@@ -8,12 +8,12 @@ type Props = React.ComponentPropsWithRef<typeof TouchableWithoutFeedback> & {
   children?: React.ReactNode;
   numberOfLines?: number;
   onPress?: () => void;
-  isCheckAble?: boolean;
+  isShort?: boolean;
   titleStyle?: StyleProp<ViewStyle>;
 };
 
-const Container = styled.View<{ isCheckAble?: boolean }>`
-  width: ${({ isCheckAble }): string => (isCheckAble ? '50px' : '125px')};
+const Container = styled.View<{ isShort?: boolean }>`
+  width: ${({ isShort }): string => (isShort ? '50px' : '125px')};
   flex-direction: row;
   align-content: center;
 `;
@@ -28,7 +28,7 @@ const StyledText = styled.Text`
 `;
 
 function TableTitle(props: Props): React.ReactElement {
-  const { isCheckAble, children, onPress, titleStyle, numberOfLines } = props;
+  const { isShort, children, onPress, titleStyle, numberOfLines } = props;
 
   return (
     <TouchableWithoutFeedback
@@ -36,7 +36,7 @@ function TableTitle(props: Props): React.ReactElement {
       disabled={!onPress}
       onPress={onPress}>
       <Container
-        isCheckAble={isCheckAble}
+        isShort={isShort}
         style={[{ paddingVertical: 12 }, titleStyle]}>
         <StyledText numberOfLines={numberOfLines}>{children}</StyledText>
       </Container>

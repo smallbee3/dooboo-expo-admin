@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import {
   TableBoxUsersQuery,
   TableBoxUsersQueryResponse,
@@ -105,6 +105,20 @@ type contextState = {
   pageCursors: PageCursorsUserConnection | null;
 };
 
+const ImageCell = styled.Image`
+  width: 20px;
+  height: 20px;
+`;
+
+const RenderFunction = (children): ReactElement => {
+  return (
+    <>
+      <ImageCell source={'https://www.talkwalker.com/images/2020/blog-headers/image-analysis.png'} />
+      {children}
+    </>
+  );
+};
+
 export const UserDispatch = React.createContext<contextState>({
   queryArgs: null,
   setQueryArgs: null,
@@ -151,6 +165,57 @@ const TableBox: React.FC = () => {
 
   const tableItems = data?.users?.pageEdges?.map((item) => item.node);
 
+  const items = [
+    {
+      name: 'Frozen yogurt',
+      id: 1,
+      type: 'Ice cream',
+      calories: 159,
+      fat: 6.0,
+      carbs: 24,
+      protein: 4.0,
+      // sodium: RenderFunction('abc'),
+      // calcium: 14,
+      // iron: 1,
+    },
+    {
+      name: 'Frozen yogurt',
+      id: 2,
+      type: 'Ice cream',
+      calories: 237,
+      fat: 9.0,
+      carbs: 37,
+      protein: 4.3,
+      // sodium: 129,
+      // calcium: 8,
+      // iron: 1,
+    },
+    {
+      name: 'Frozen yogurt',
+      id: 3,
+      type: 'Pastry',
+      calories: 262,
+      fat: 16.0,
+      carbs: 37,
+      protein: 6.0,
+      // sodium: 337,
+      // calcium: 6,
+      // iron: 7,
+    },
+    {
+      name: 'Cupcake',
+      id: 4,
+      type: 'Pastry',
+      calories: 305,
+      fat: 3.7,
+      carbs: 67,
+      protein: 4.3,
+      // sodium: 413,
+      // calcium: 3,
+      // iron: 8,
+    },
+  ];
+
   return (
     <UserDispatch.Provider
       value={{
@@ -194,8 +259,9 @@ const TableBox: React.FC = () => {
         {tableItems && (
           <Table
             // customGroup={customGroupData}
-            isCheckAble={true}
-            data={tableItems}
+            isCheckAble={false}
+            // data={tableItems}
+            data={items}
             style={{
               borderRadius: 25,
             }}

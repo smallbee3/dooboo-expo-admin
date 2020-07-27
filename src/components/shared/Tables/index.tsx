@@ -33,9 +33,9 @@ type TableNamespace = {
 };
 
 const TableWrapper = styled.View`
+  margin: 7px;
   border-radius: 6px;
   box-shadow: 0px 4px 30px #e7ebf0;
-  margin: 7px;
 `;
 
 const Container = styled.View`
@@ -102,116 +102,109 @@ const Table: React.FC<Props> & TableNamespace = ({
   /** Render */
   return (
     <ScrollView
-      style={{
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
         width: '100%',
         height: '100%',
       }}
     >
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-      >
-        <Container>
-          <View
+      <Container>
+        <View
+          style={{
+            paddingBottom: 15,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
+          <Text
             style={{
-              paddingBottom: 15,
-              flexDirection: 'row',
-              alignItems: 'center',
+              color: '#6DA6FC',
             }}
           >
-            <Text
-              style={{
-                color: '#6DA6FC',
-              }}
-            >
-              {selected.length > 0 ? `${selected.length}개 선택됨` : null}
-              {'   '}
-            </Text>
-            <Text
-              style={{
-                color: '#828282',
-              }}
-            >
-              {`총 ${data.length}개`}
-            </Text>
-            <TouchableOpacity
-              onPress={(): void => {
-                setSelected([]);
-              }}
-            >
-              <StyledDeleteButton>
-                <StyledText>
-                  삭제
-                </StyledText>
-              </StyledDeleteButton>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={(): void => {
-                setSelected([]);
-              }}
-            >
-              <StyledUnselectButton>
-                <StyledText>
-                  선택해제
-                </StyledText>
-              </StyledUnselectButton>
-            </TouchableOpacity>
-          </View>
-          <TableWrapper>
-            <Table.Header headerStyle={{ backgroundColor: 'white' }}>
-              <Table.Title isCheckAble={!isCheckAble} />
+            {selected.length > 0 ? `${selected.length}개 선택됨` : null}
+            {'   '}
+          </Text>
+          <Text
+            style={{
+              color: '#828282',
+            }}
+          >
+            {`총 ${data.length}개`}
+          </Text>
+          <TouchableOpacity
+            onPress={(): void => {
+              setSelected([]);
+            }}
+          >
+            <StyledDeleteButton>
+              <StyledText>삭제</StyledText>
+            </StyledDeleteButton>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={(): void => {
+              setSelected([]);
+            }}
+          >
+            <StyledUnselectButton>
+              <StyledText>선택해제</StyledText>
+            </StyledUnselectButton>
+          </TouchableOpacity>
+        </View>
+        <TableWrapper>
+          <Table.Header headerStyle={{ backgroundColor: 'white' }}>
+            <Table.Title isCheckAble={!isCheckAble} />
 
-              {/** have a customGroup or undefined  */}
-              {(customGroup || group)?.map((field: any, index: number) => {
-                return (
-                  <Table.Title
-                    numberOfLines={1}
-                    key={`${field}-${index}`}
-                    isCheckAble={index === 0}
-                  >
-                    {field}
-                  </Table.Title>
-                );
-              })}
-            </Table.Header>
-            {data.map((item, i) => {
-              const isItemSelected = isSelected(item[group[0]]);
+            {/** have a customGroup or undefined  */}
+            {(customGroup || group)?.map((field: any, index: number) => {
               return (
-                <Table.Row
-                  key={`row-${item}-${i}`}
-                  isChecked={!!isItemSelected}
-                  rowStyle={{ backgroundColor: 'white' }}
+                <Table.Title
+                  numberOfLines={1}
+                  key={`${field}-${index}`}
+                  isCheckAble={index === 0}
                 >
-                  {/* If CheckAble is true */}
-                  {isCheckAble ? (
-                    <Table.Cell cellStyle={[{ justifyContent: 'center' }]}>
-                      <CheckBox
-                        onClick={(): void => handleClick(item[group[0]])}
-                        value={!!isItemSelected}
-                      />
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell isShort={!isCheckAble} />
-                  )}
-                  {/** Body */}
-                  {group?.map((param: any, index: number) => {
-                    return (
-                      <Table.Cell
-                        key={`cell-${param}-${index}`}
-                        isShort={index === 0}
-                      >
-                        {item[param]}
-                      </Table.Cell>
-                    );
-                  })}
-                </Table.Row>
+                  {field}
+                </Table.Title>
               );
             })}
-            <Table.Footer></Table.Footer>
-          </TableWrapper>
-        </Container>
-      </ScrollView>
+          </Table.Header>
+          {data.map((item, i) => {
+            const isItemSelected = isSelected(item[group[0]]);
+            return (
+              <Table.Row
+                key={`row-${item}-${i}`}
+                isChecked={!!isItemSelected}
+                rowStyle={{ backgroundColor: 'white' }}
+              >
+                {/* If CheckAble is true */}
+                {isCheckAble ? (
+                  <Table.Cell cellStyle={[{ justifyContent: 'center' }]}>
+                    <CheckBox
+                      onClick={(): void => handleClick(item[group[0]])}
+                      value={!!isItemSelected}
+                    />
+                  </Table.Cell>
+                ) : (
+                  <Table.Cell isShort={!isCheckAble} />
+                )}
+                {/** Body */}
+                {group?.map((param: any, index: number) => {
+                  return (
+                    <Table.Cell
+                      key={`cell-${param}-${index}`}
+                      isShort={index === 0}
+                    >
+                      {item[param]}
+                    </Table.Cell>
+                  );
+                })}
+              </Table.Row>
+            );
+          })}
+          <Table.Footer></Table.Footer>
+        </TableWrapper>
+      </Container>
     </ScrollView>
   );
 };

@@ -3,7 +3,7 @@ import { TouchableOpacity, View } from 'react-native';
 
 import styled from 'styled-components/native';
 
-const CheckView = styled.View<{ checked: boolean }>`
+const CheckView = styled.View<{ checked?: boolean }>`
   height: 20px;
   width: 20px;
   border-width: 2px;

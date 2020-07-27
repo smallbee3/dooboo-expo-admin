@@ -12,7 +12,7 @@ type Props = React.ComponentPropsWithRef<typeof TouchableWithoutFeedback> & {
   titleStyle?: StyleProp<ViewStyle>;
 };
 
-const Container = styled.View<{ isCheckAble: boolean }>`
+const Container = styled.View<{ isCheckAble?: boolean }>`
   width: ${({ isCheckAble }): string => (isCheckAble ? '50px' : '125px')};
   flex-direction: row;
   align-content: center;
